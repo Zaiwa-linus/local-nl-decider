@@ -2,3 +2,4 @@
 __pycache__/
 02_data/*
 !02_data/README.md
+.env

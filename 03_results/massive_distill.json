@@ -1,0 +1,197 @@
+{
+  "agreement": 0.9045,
+  "labeled": 2000,
+  "rows": [
+    {
+      "size": 500,
+      "llm_accuracy": 0.8635,
+      "llm_macro_f1": 0.8617,
+      "true_accuracy": 0.8783,
+      "true_macro_f1": 0.8731
+    },
+    {
+      "size": 1000,
+      "llm_accuracy": 0.8766,
+      "llm_macro_f1": 0.8734,
+      "true_accuracy": 0.8924,
+      "true_macro_f1": 0.8905
+    },
+    {
+      "size": 2000,
+      "llm_accuracy": 0.8753,
+      "llm_macro_f1": 0.8724,
+      "true_accuracy": 0.9035,
+      "true_macro_f1": 0.9015
+    }
+  ],
+  "full_train": {
+    "size": 11514,
+    "accuracy": 0.9082,
+    "macro_f1": 0.9072
+  },
+  "disagreements": [
+    {
+      "true": "qa",
+      "llm": "general",
+      "count": 14
+    },
+    {
+      "true": "general",
+      "llm": "qa",
+      "count": 12
+    },
+    {
+      "true": "play",
+      "llm": "general",
+      "count": 12
+    },
+    {
+      "true": "music",
+      "llm": "play",
+      "count": 10
+    },
+    {
+      "true": "news",
+      "llm": "qa",
+      "count": 7
+    },
+    {
+      "true": "news",
+      "llm": "general",
+      "count": 6
+    },
+    {
+      "true": "general",
+      "llm": "recommendation",
+      "count": 5
+    },
+    {
+      "true": "audio",
+      "llm": "general",
+      "count": 5
+    },
+    {
+      "true": "calendar",
+      "llm": "general",
+      "count": 4
+    },
+    {
+      "true": "calendar",
+      "llm": "datetime",
+      "count": 4
+    }
+  ],
+  "by_confidence": {
+    "DeepSeek のラベル 2,000 件": [
+      {
+        "threshold": 0.0,
+        "coverage": 1.0,
+        "accuracy": 0.875
+      },
+      {
+        "threshold": 0.5,
+        "coverage": 0.941,
+        "accuracy": 0.906
+      },
+      {
+        "threshold": 0.6,
+        "coverage": 0.897,
+        "accuracy": 0.926
+      },
+      {
+        "threshold": 0.7,
+        "coverage": 0.849,
+        "accuracy": 0.942
+      },
+      {
+        "threshold": 0.8,
+        "coverage": 0.798,
+        "accuracy": 0.959
+      },
+      {
+        "threshold": 0.9,
+        "coverage": 0.723,
+        "accuracy": 0.973
+      },
+      {
+        "threshold": 0.95,
+        "coverage": 0.641,
+        "accuracy": 0.98
+      }
+    ],
+    "正解のラベル 2,000 件": [
+      {
+        "threshold": 0.0,
+        "coverage": 1.0,
+        "accuracy": 0.903
+      },
+      {
+        "threshold": 0.5,
+        "coverage": 0.938,
+        "accuracy": 0.93
+      },
+      {
+        "threshold": 0.6,
+        "coverage": 0.897,
+        "accuracy": 0.945
+      },
+      {
+        "threshold": 0.7,
+        "coverage": 0.864,
+        "accuracy": 0.953
+      },
+      {
+        "threshold": 0.8,
+        "coverage": 0.817,
+        "accuracy": 0.963
+      },
+      {
+        "threshold": 0.9,
+        "coverage": 0.729,
+        "accuracy": 0.976
+      },
+      {
+        "threshold": 0.95,
+        "coverage": 0.64,
+        "accuracy": 0.984
+      }
+    ],
+    "正解のラベル 11,514 件（train 全件）": [
+      {
+        "threshold": 0.0,
+        "coverage": 1.0,
+        "accuracy": 0.908
+      },
+      {
+        "threshold": 0.5,
+        "coverage": 0.955,
+        "accuracy": 0.934
+      },
+      {
+        "threshold": 0.6,
+        "coverage": 0.923,
+        "accuracy": 0.946
+      },
+      {
+        "threshold": 0.7,
+        "coverage": 0.892,
+        "accuracy": 0.957
+      },
+      {
+        "threshold": 0.8,
+        "coverage": 0.852,
+        "accuracy": 0.968
+      },
+      {
+        "threshold": 0.9,
+        "coverage": 0.786,
+        "accuracy": 0.977
+      },
+      {
+        "threshold": 0.95,
+        "coverage": 0.72,
+        "accuracy": 0.986
+      }
+    ]
+  }
+}

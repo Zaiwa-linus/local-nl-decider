@@ -13,6 +13,8 @@
 | [03_train_eval.py](03_train_eval.py) | 判定機を学習・評価して `03_results/` に保存する | このリポジトリの環境 |
 | [04_tune.py](04_tune.py) | 判定機のパラメーターを validation で選び、間違えやすい組み合わせも出す | このリポジトリの環境 |
 | [05_train_final.py](05_train_final.py) | 判定に使うロジスティック回帰を学習し、確信度の補正（温度）としきい値を validation で決めて `02_data/models/` に保存する | このリポジトリの環境 |
+| [07_llm_label.py](07_llm_label.py) | train の一部に DeepSeek でラベルを付ける（蒸留用。`.env` の `DEEPSEEK_API_KEY` を使う） | このリポジトリの環境（`uv run --env-file .env`） |
+| [08_distill_eval.py](08_distill_eval.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる | このリポジトリの環境 |
 | [06_predict.py](06_predict.py) | 新しいテキストを判定して、カテゴリーと確信度を返す。しきい値を下回ったものは「要確認」と出す | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
 
 ## サンプル
