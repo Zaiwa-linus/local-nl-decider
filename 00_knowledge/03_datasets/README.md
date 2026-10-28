@@ -1,28 +1,76 @@
-# オープンデータの候補
+# 学習対象のデータ
 
-Phase 1 で使う、ラベル付きの口コミのデータを調べたメモ。まだ調べ始めたばかりで、決まったものはない。
+Phase 1 で使う、ラベル付きのデータを調べたメモ（2026-10-29 時点）。
 
-## 選ぶときの条件
+## 条件
 
-- 日本語の口コミであること（優先）
-- カテゴリー（商品ジャンル、話題、評価など）のラベルが付いていること
-- ライセンスがはっきりしていて、手に入れられること
+- 日本語であること
+- 自然言語の文章であること
+- あらかじめグループ分け（カテゴリーのラベル付け）がされていること
+- 星の数やポジティブ／ネガティブのような「評価」ではなく、「何についての文章か」でグループ分けされていること
 
 ## 候補
 
-| データ | ラベル | 規模 | ライセンス | 状況 |
-| --- | --- | --- | --- | --- |
-| MARC-ja（JGLUE） | ポジティブ／ネガティブの 2 値（星 1・2 → negative、星 4・5 → positive。星 3 は除外） | 学習 187,528 / 検証 5,654 / テスト 5,639 | CC BY-SA 4.0（JGLUE） | 元データ（Amazon の MARC）の配布が終わっているので、手に入るか要確認 |
-| Amazon Reviews Multi（日本語部分） | 星 1〜5、商品カテゴリー | 要確認 | 要確認 | 配布が終わっている可能性あり。要確認 |
-| 楽天データセット（IDR） | 要確認 | 要確認 | 研究目的のみ（申請が必要） | 未調査 |
+| | データ | 文章 | グループ | 件数 | ライセンス |
+| --- | --- | --- | --- | --- | --- |
+| A | MASSIVE（日本語） | スマートスピーカーへの話しかけ（短文） | シナリオ 18 種類／意図 60 種類 | 学習 11,514 / 検証 2,033 / テスト 2,974 | CC BY 4.0 |
+| B | Amazon 多言語レビューコーパス（日本語） | 商品レビュー | 商品カテゴリー 28 種類 | 学習 200,000 / 検証 5,000 / テスト 5,000 | Amazon 独自の規約（学術研究のみ、商用不可） |
+| C | livedoor ニュースコーパス | ニュース記事 | ニュースのカテゴリー 9 種類 | 学習 5,163 / 検証 1,106 / テスト 1,107 | CC BY-ND 2.1 JP |
+| D | SIB-200（日本語） | Wikipedia などの文（英語からの翻訳） | 話題 7 種類 | 学習 701 / 検証 99 / テスト 204 | CC BY-SA 4.0（要確認） |
+| E | MewsC-16（日本語） | Wikinews の文 | 話題 12 種類 | 検証 992 / テスト 992（学習用なし） | 要確認 |
 
-## メモ
+どれも [JMTEB](https://huggingface.co/datasets/sbintuitions/JMTEB)（日本語の埋め込みモデルのベンチマーク）に Parquet 形式で入っていて、すぐに取得できる。B は JMTEB では星の数のラベルしかないので、商品カテゴリーを使うには別の複製リポジトリから取る（下記）。
 
-- MARC-ja は感情（ポジ／ネガ）の 2 値なので、「グループ分け」の検証としては物足りないかもしれない。最初の動作確認には使いやすい
-- 商品カテゴリーのような多クラスのラベルが付いたデータを優先して探す
+### A. MASSIVE（日本語）
+
+- Amazon が作った、スマートスピーカー（Alexa）への話しかけのデータ。英語のデータを、各言語の話者が言い換えて作っている
+- 例: 「ライトを消して」「玄関のライトを暗くする」→ シナリオ `iot`
+- 文は短い（検証データの中央値は 14 文字）
+- シナリオ（18 種類）と意図（60 種類）の 2 段階のラベルがある。粗い分類と細かい分類の両方を試せる
+- ライセンスが CC BY 4.0 で、扱いやすい
+- 取得元: JMTEB の `massive_scenario_classification` / `massive_intent_classification`
+
+### B. Amazon 多言語レビューコーパス（日本語）
+
+- Amazon.co.jp の商品レビュー。条件にいちばん合っている（口コミで、件数も多い）
+- 商品カテゴリーの内訳（検証データ 5,000 件）: home 448、sports 394、pc 393、wireless 379、kitchen 346、automotive 330、drugstore 282、electronics 248、toy 240、shoes 207、apparel 207、beauty 186、grocery 171、home_improvement 167、other 154、book 121、pet_products 117、office_product 114、camera 91、video_games 69、industrial_supplies 68、digital_video_download 62、baby_product 48、digital_ebook_purchase 48、watch 40、musical_instruments 39、jewelry 30、luggage 1
+- 文の長さ: 中央値 73 文字
+- **注意 1（規約）**: 学術研究目的のみに使える。商用利用、再配布、作者を特定しようとすることは禁止。規約に違反すると利用できなくなる
+- **注意 2（入手）**: 元の配布（AWS）は終わっている。Hugging Face の複製リポジトリ（`buruzaemon/amazon_reviews_multi`）からは取得できる。ライセンス欄は `other`
+- **注意 3（ラベルの性質）**: ラベルは「レビューの内容」ではなく「商品のカテゴリー」。「届くのが遅い」のようなレビューは、文章からカテゴリーを判断できない。そのため、精度には上限がある
+
+### C. livedoor ニュースコーパス
+
+- ニュースサイトの記事。カテゴリーは「独女通信」「IT ライフハック」「スポーツ」など 9 種類
+- 記事の本文は長い。タイトルだけでも分類できる
+- CC BY-ND（改変禁止）。学習に使うのは問題ないが、加工したデータを配布してはいけない
+
+### D・E. SIB-200 / MewsC-16
+
+- 件数が少ない。補助的な評価に使う程度
+
+## 対象外にしたもの
+
+| データ | 理由 |
+| --- | --- |
+| MARC-ja（JGLUE）、Amazon レビューの星の数、WRIME、日本語の感情分類 | ラベルが評価（星の数、ポジ／ネガ、感情の強さ）で、グループ分けではない |
+| 楽天データセット（IDR） | 大学や公的研究機関の研究者しか使えない |
+| 楽天技術研究所のアスペクト別評価コーパス | 公開されているか、ライセンスがどうなっているかを確認できなかった |
+
+## おすすめ
+
+1. **まず A（MASSIVE）で判定機の作り方を固める**。ライセンスがはっきりしていて、グループの数もちょうどいい
+2. **次に B（Amazon レビュー）で、口コミでどこまで分類できるか確かめる**。ただし、規約上は学術研究目的に限られる。使ってよいかは、このプロジェクトの目的に照らして判断する
+3. C は、長い文章でも分類できるか確かめたいときに使う
+
+どのデータも、取得したものはリポジトリにコミットしない（AGENTS.md のルール）。
 
 ## 出典
 
-- https://huggingface.co/datasets/shunk031/JGLUE
-- https://megagon.ai/transformers-model-using-jglue/
-- https://preview.aclanthology.org/fix_video/2022.lrec-1.317.pdf
+- JMTEB: https://huggingface.co/datasets/sbintuitions/JMTEB
+- MASSIVE: https://github.com/alexa/massive 、 https://huggingface.co/datasets/AmazonScience/massive
+- Amazon 多言語レビューコーパス（複製）: https://huggingface.co/datasets/buruzaemon/amazon_reviews_multi
+- Amazon 多言語レビューコーパスの規約: https://huggingface.co/datasets/defunct-datasets/amazon_reviews_multi
+- livedoor ニュースコーパス: https://huggingface.co/datasets/shunk031/livedoor-news-corpus
+- 楽天データセット: https://www.nii.ac.jp/dsc/idr/rakuten/
+- 楽天のアスペクト別評価コーパス: https://www.anlp.jp/proceedings/annual_meeting/2021/pdf_dir/P2-12.pdf

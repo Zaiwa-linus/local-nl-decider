@@ -1,0 +1,182 @@
+{
+  "results": [
+    {
+      "label": "scenario",
+      "classifier": "logreg",
+      "params": {
+        "C": 30
+      },
+      "validation_macro_f1": 0.9109,
+      "accuracy": 0.9082,
+      "macro_f1": 0.9072,
+      "train_seconds": 0.64,
+      "predict_per_second": 2584185
+    },
+    {
+      "label": "scenario",
+      "classifier": "knn",
+      "params": {
+        "k": 10
+      },
+      "validation_macro_f1": 0.9091,
+      "accuracy": 0.9082,
+      "macro_f1": 0.9051,
+      "train_seconds": 0.0,
+      "predict_per_second": 7462
+    },
+    {
+      "label": "scenario",
+      "classifier": "mlp",
+      "params": {
+        "hidden": 256
+      },
+      "validation_macro_f1": 0.9081,
+      "accuracy": 0.9119,
+      "macro_f1": 0.9103,
+      "train_seconds": 2.15,
+      "predict_per_second": 1282527
+    },
+    {
+      "label": "intent",
+      "classifier": "logreg",
+      "params": {
+        "C": 100
+      },
+      "validation_macro_f1": 0.8641,
+      "accuracy": 0.8588,
+      "macro_f1": 0.8378,
+      "train_seconds": 2.17,
+      "predict_per_second": 2496270
+    },
+    {
+      "label": "intent",
+      "classifier": "knn",
+      "params": {
+        "k": 10
+      },
+      "validation_macro_f1": 0.8647,
+      "accuracy": 0.8658,
+      "macro_f1": 0.8426,
+      "train_seconds": 0.01,
+      "predict_per_second": 7709
+    },
+    {
+      "label": "intent",
+      "classifier": "mlp",
+      "params": {
+        "hidden": 1024
+      },
+      "validation_macro_f1": 0.8449,
+      "accuracy": 0.8645,
+      "macro_f1": 0.8384,
+      "train_seconds": 7.74,
+      "predict_per_second": 404575
+    }
+  ],
+  "confusions": {
+    "scenario": [
+      {
+        "true": "general",
+        "predicted": "qa",
+        "count": 20
+      },
+      {
+        "true": "qa",
+        "predicted": "general",
+        "count": 20
+      },
+      {
+        "true": "general",
+        "predicted": "calendar",
+        "count": 13
+      },
+      {
+        "true": "music",
+        "predicted": "play",
+        "count": 8
+      },
+      {
+        "true": "general",
+        "predicted": "news",
+        "count": 8
+      },
+      {
+        "true": "news",
+        "predicted": "general",
+        "count": 7
+      },
+      {
+        "true": "general",
+        "predicted": "play",
+        "count": 7
+      },
+      {
+        "true": "news",
+        "predicted": "qa",
+        "count": 6
+      },
+      {
+        "true": "play",
+        "predicted": "music",
+        "count": 6
+      },
+      {
+        "true": "weather",
+        "predicted": "general",
+        "count": 6
+      }
+    ],
+    "intent": [
+      {
+        "true": "general_quirky",
+        "predicted": "qa_factoid",
+        "count": 14
+      },
+      {
+        "true": "calendar_set",
+        "predicted": "calendar_query",
+        "count": 14
+      },
+      {
+        "true": "calendar_query",
+        "predicted": "calendar_set",
+        "count": 13
+      },
+      {
+        "true": "qa_factoid",
+        "predicted": "general_quirky",
+        "count": 12
+      },
+      {
+        "true": "general_quirky",
+        "predicted": "news_query",
+        "count": 10
+      },
+      {
+        "true": "news_query",
+        "predicted": "general_quirky",
+        "count": 9
+      },
+      {
+        "true": "general_quirky",
+        "predicted": "calendar_query",
+        "count": 7
+      },
+      {
+        "true": "play_music",
+        "predicted": "play_audiobook",
+        "count": 6
+      },
+      {
+        "true": "general_quirky",
+        "predicted": "calendar_set",
+        "count": 6
+      },
+      {
+        "true": "play_music",
+        "predicted": "play_radio",
+        "count": 5
+      }
+    ]
+  }
+}

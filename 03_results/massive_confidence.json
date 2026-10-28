@@ -1,0 +1,222 @@
+{
+  "scenario": {
+    "temperature": 1.07,
+    "test_accuracy": 0.9082,
+    "ece_before": 0.012,
+    "ece_after": 0.0091,
+    "reliability_before": [
+      {
+        "bin": "0.0–0.5",
+        "count": 134,
+        "confidence": 0.398,
+        "accuracy": 0.366
+      },
+      {
+        "bin": "0.5–0.6",
+        "count": 95,
+        "confidence": 0.548,
+        "accuracy": 0.589
+      },
+      {
+        "bin": "0.6–0.7",
+        "count": 93,
+        "confidence": 0.648,
+        "accuracy": 0.634
+      },
+      {
+        "bin": "0.7–0.8",
+        "count": 117,
+        "confidence": 0.752,
+        "accuracy": 0.718
+      },
+      {
+        "bin": "0.8–0.9",
+        "count": 197,
+        "confidence": 0.857,
+        "accuracy": 0.858
+      },
+      {
+        "bin": "0.9–0.95",
+        "count": 198,
+        "confidence": 0.928,
+        "accuracy": 0.884
+      },
+      {
+        "bin": "0.95–1.0",
+        "count": 2140,
+        "confidence": 0.992,
+        "accuracy": 0.986
+      }
+    ],
+    "reliability_after": [
+      {
+        "bin": "0.0–0.5",
+        "count": 153,
+        "confidence": 0.393,
+        "accuracy": 0.379
+      },
+      {
+        "bin": "0.5–0.6",
+        "count": 100,
+        "confidence": 0.545,
+        "accuracy": 0.62
+      },
+      {
+        "bin": "0.6–0.7",
+        "count": 100,
+        "confidence": 0.65,
+        "accuracy": 0.64
+      },
+      {
+        "bin": "0.7–0.8",
+        "count": 127,
+        "confidence": 0.753,
+        "accuracy": 0.764
+      },
+      {
+        "bin": "0.8–0.9",
+        "count": 217,
+        "confidence": 0.856,
+        "accuracy": 0.876
+      },
+      {
+        "bin": "0.9–0.95",
+        "count": 228,
+        "confidence": 0.928,
+        "accuracy": 0.908
+      },
+      {
+        "bin": "0.95–1.0",
+        "count": 2049,
+        "confidence": 0.99,
+        "accuracy": 0.987
+      }
+    ],
+    "thresholds": [
+      {
+        "target": 0.95,
+        "threshold": 0.59,
+        "validation_coverage": 0.927,
+        "test_coverage": 0.916,
+        "test_accuracy": 0.948
+      },
+      {
+        "target": 0.97,
+        "threshold": 0.78,
+        "validation_coverage": 0.853,
+        "test_coverage": 0.848,
+        "test_accuracy": 0.969
+      }
+    ]
+  },
+  "intent": {
+    "temperature": 1.27,
+    "test_accuracy": 0.8588,
+    "ece_before": 0.0403,
+    "ece_after": 0.0092,
+    "reliability_before": [
+      {
+        "bin": "0.0–0.5",
+        "count": 167,
+        "confidence": 0.399,
+        "accuracy": 0.365
+      },
+      {
+        "bin": "0.5–0.6",
+        "count": 109,
+        "confidence": 0.552,
+        "accuracy": 0.468
+      },
+      {
+        "bin": "0.6–0.7",
+        "count": 116,
+        "confidence": 0.651,
+        "accuracy": 0.586
+      },
+      {
+        "bin": "0.7–0.8",
+        "count": 143,
+        "confidence": 0.752,
+        "accuracy": 0.699
+      },
+      {
+        "bin": "0.8–0.9",
+        "count": 253,
+        "confidence": 0.856,
+        "accuracy": 0.763
+      },
+      {
+        "bin": "0.9–0.95",
+        "count": 250,
+        "confidence": 0.927,
+        "accuracy": 0.856
+      },
+      {
+        "bin": "0.95–1.0",
+        "count": 1936,
+        "confidence": 0.99,
+        "accuracy": 0.964
+      }
+    ],
+    "reliability_after": [
+      {
+        "bin": "0.0–0.5",
+        "count": 255,
+        "confidence": 0.372,
+        "accuracy": 0.388
+      },
+      {
+        "bin": "0.5–0.6",
+        "count": 149,
+        "confidence": 0.549,
+        "accuracy": 0.604
+      },
+      {
+        "bin": "0.6–0.7",
+        "count": 147,
+        "confidence": 0.655,
+        "accuracy": 0.701
+      },
+      {
+        "bin": "0.7–0.8",
+        "count": 215,
+        "confidence": 0.755,
+        "accuracy": 0.763
+      },
+      {
+        "bin": "0.8–0.9",
+        "count": 351,
+        "confidence": 0.856,
+        "accuracy": 0.849
+      },
+      {
+        "bin": "0.9–0.95",
+        "count": 377,
+        "confidence": 0.928,
+        "accuracy": 0.923
+      },
+      {
+        "bin": "0.95–1.0",
+        "count": 1480,
+        "confidence": 0.983,
+        "accuracy": 0.981
+      }
+    ],
+    "thresholds": [
+      {
+        "target": 0.95,
+        "threshold": 0.76,
+        "validation_coverage": 0.782,
+        "test_coverage": 0.777,
+        "test_accuracy": 0.942
+      },
+      {
+        "target": 0.97,
+        "threshold": 0.9,
+        "validation_coverage": 0.64,
+        "test_coverage": 0.624,
+        "test_accuracy": 0.969
+      }
+    ]
+  }
+}

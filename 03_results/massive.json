@@ -1,0 +1,82 @@
+[
+  {
+    "label": "scenario",
+    "classes": 18,
+    "dim": 768,
+    "classifier": "logreg",
+    "accuracy": 0.9102,
+    "macro_f1": 0.9081,
+    "train_seconds": 0.45,
+    "predict_per_second": 1872390
+  },
+  {
+    "label": "scenario",
+    "classes": 18,
+    "dim": 768,
+    "classifier": "knn",
+    "accuracy": 0.9082,
+    "macro_f1": 0.9051,
+    "train_seconds": 0.01,
+    "predict_per_second": 7132
+  },
+  {
+    "label": "scenario",
+    "classes": 18,
+    "dim": 256,
+    "classifier": "logreg",
+    "accuracy": 0.9032,
+    "macro_f1": 0.9015,
+    "train_seconds": 0.33,
+    "predict_per_second": 6193575
+  },
+  {
+    "label": "scenario",
+    "classes": 18,
+    "dim": 256,
+    "classifier": "knn",
+    "accuracy": 0.9065,
+    "macro_f1": 0.9041,
+    "train_seconds": 0.0,
+    "predict_per_second": 8519
+  },
+  {
+    "label": "intent",
+    "classes": 60,
+    "dim": 768,
+    "classifier": "logreg",
+    "accuracy": 0.8658,
+    "macro_f1": 0.8424,
+    "train_seconds": 1.27,
+    "predict_per_second": 2588475
+  },
+  {
+    "label": "intent",
+    "classes": 60,
+    "dim": 768,
+    "classifier": "knn",
+    "accuracy": 0.8658,
+    "macro_f1": 0.8426,
+    "train_seconds": 0.01,
+    "predict_per_second": 7773
+  },
+  {
+    "label": "intent",
+    "classes": 60,
+    "dim": 256,
+    "classifier": "logreg",
+    "accuracy": 0.8557,
+    "macro_f1": 0.8194,
+    "train_seconds": 0.82,
+    "predict_per_second": 4148274
+  },
+  {
+    "label": "intent",
+    "classes": 60,
+    "dim": 256,
+    "classifier": "knn",
+    "accuracy": 0.8615,
+    "macro_f1": 0.8281,
+    "train_seconds": 0.01,
+    "predict_per_second": 8709
+  }
+]
