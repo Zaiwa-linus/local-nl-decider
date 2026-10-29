@@ -1,0 +1,401 @@
+{
+  "train": 5159,
+  "test": 1104,
+  "teacher_accuracy": 0.7074,
+  "teacher_train_agreement": 0.7116,
+  "teacher_per_class": {
+    "dokujo-tsushin": {
+      "precision": 0.816,
+      "recall": 0.615,
+      "f1-score": 0.702
+    },
+    "it-life-hack": {
+      "precision": 0.623,
+      "recall": 0.508,
+      "f1-score": 0.559
+    },
+    "kaden-channel": {
+      "precision": 0.672,
+      "recall": 0.346,
+      "f1-score": 0.457
+    },
+    "livedoor-homme": {
+      "precision": 0.846,
+      "recall": 0.429,
+      "f1-score": 0.569
+    },
+    "movie-enter": {
+      "precision": 0.804,
+      "recall": 0.915,
+      "f1-score": 0.856
+    },
+    "peachy": {
+      "precision": 0.739,
+      "recall": 0.698,
+      "f1-score": 0.718
+    },
+    "smax": {
+      "precision": 0.665,
+      "recall": 0.915,
+      "f1-score": 0.77
+    },
+    "sports-watch": {
+      "precision": 0.878,
+      "recall": 0.904,
+      "f1-score": 0.891
+    },
+    "topic-news": {
+      "precision": 0.522,
+      "recall": 0.94,
+      "f1-score": 0.671
+    }
+  },
+  "teacher_confusions": [
+    {
+      "true": "kaden-channel",
+      "llm": "topic-news",
+      "count": 30
+    },
+    {
+      "true": "it-life-hack",
+      "llm": "smax",
+      "count": 26
+    },
+    {
+      "true": "it-life-hack",
+      "llm": "topic-news",
+      "count": 26
+    },
+    {
+      "true": "kaden-channel",
+      "llm": "it-life-hack",
+      "count": 26
+    },
+    {
+      "true": "dokujo-tsushin",
+      "llm": "peachy",
+      "count": 25
+    },
+    {
+      "true": "kaden-channel",
+      "llm": "smax",
+      "count": 24
+    },
+    {
+      "true": "sports-watch",
+      "llm": "topic-news",
+      "count": 13
+    },
+    {
+      "true": "peachy",
+      "llm": "dokujo-tsushin",
+      "count": 12
+    },
+    {
+      "true": "dokujo-tsushin",
+      "llm": "movie-enter",
+      "count": 11
+    },
+    {
+      "true": "it-life-hack",
+      "llm": "kaden-channel",
+      "count": 10
+    }
+  ],
+  "classifiers": {
+    "gold": {
+      "C": 30,
+      "cv_macro_f1": {
+        "1": 0.8285555780509559,
+        "3": 0.8513528762817856,
+        "10": 0.8630016955713511,
+        "30": 0.8633512876826244,
+        "100": 0.8590263366064844
+      },
+      "rows": [
+        {
+          "size": 500,
+          "accuracy": 0.7926,
+          "macro_f1": 0.7833,
+          "agreement_with_llm_test": 0.7437
+        },
+        {
+          "size": 1000,
+          "accuracy": 0.8297,
+          "macro_f1": 0.8217,
+          "agreement_with_llm_test": 0.74
+        },
+        {
+          "size": 2000,
+          "accuracy": 0.8505,
+          "macro_f1": 0.8434,
+          "agreement_with_llm_test": 0.7446
+        },
+        {
+          "size": 5159,
+          "accuracy": 0.8741,
+          "macro_f1": 0.8676,
+          "agreement_with_llm_test": 0.74
+        }
+      ],
+      "per_class_f1": {
+        "dokujo-tsushin": 0.867,
+        "it-life-hack": 0.828,
+        "kaden-channel": 0.803,
+        "livedoor-homme": 0.762,
+        "movie-enter": 0.917,
+        "peachy": 0.85,
+        "smax": 0.93,
+        "sports-watch": 0.956,
+        "topic-news": 0.895
+      },
+      "by_confidence": [
+        {
+          "threshold": 0.0,
+          "coverage": 1.0,
+          "accuracy": 0.874
+        },
+        {
+          "threshold": 0.5,
+          "coverage": 0.944,
+          "accuracy": 0.892
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.885,
+          "accuracy": 0.918
+        },
+        {
+          "threshold": 0.7,
+          "coverage": 0.819,
+          "accuracy": 0.936
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.734,
+          "accuracy": 0.952
+        },
+        {
+          "threshold": 0.9,
+          "coverage": 0.584,
+          "accuracy": 0.964
+        },
+        {
+          "threshold": 0.95,
+          "coverage": 0.455,
+          "accuracy": 0.98
+        }
+      ],
+      "confusions": [
+        {
+          "true": "kaden-channel",
+          "predicted": "it-life-hack",
+          "count": 15
+        },
+        {
+          "true": "it-life-hack",
+          "predicted": "smax",
+          "count": 9
+        },
+        {
+          "true": "livedoor-homme",
+          "predicted": "dokujo-tsushin",
+          "count": 8
+        },
+        {
+          "true": "dokujo-tsushin",
+          "predicted": "peachy",
+          "count": 7
+        },
+        {
+          "true": "peachy",
+          "predicted": "dokujo-tsushin",
+          "count": 7
+        },
+        {
+          "true": "kaden-channel",
+          "predicted": "topic-news",
+          "count": 6
+        },
+        {
+          "true": "peachy",
+          "predicted": "movie-enter",
+          "count": 6
+        },
+        {
+          "true": "it-life-hack",
+          "predicted": "kaden-channel",
+          "count": 5
+        },
+        {
+          "true": "sports-watch",
+          "predicted": "topic-news",
+          "count": 5
+        },
+        {
+          "true": "topic-news",
+          "predicted": "sports-watch",
+          "count": 5
+        }
+      ]
+    },
+    "llm": {
+      "C": 10,
+      "cv_macro_f1": {
+        "1": 0.8249330388838457,
+        "3": 0.8417132939305254,
+        "10": 0.8493896479722322,
+        "30": 0.8430847574290121,
+        "100": 0.8392610512310877
+      },
+      "rows": [
+        {
+          "size": 500,
+          "accuracy": 0.6893,
+          "macro_f1": 0.6553,
+          "agreement_with_llm_test": 0.8478
+        },
+        {
+          "size": 1000,
+          "accuracy": 0.6993,
+          "macro_f1": 0.6693,
+          "agreement_with_llm_test": 0.865
+        },
+        {
+          "size": 2000,
+          "accuracy": 0.6993,
+          "macro_f1": 0.6724,
+          "agreement_with_llm_test": 0.8723
+        },
+        {
+          "size": 5159,
+          "accuracy": 0.7129,
+          "macro_f1": 0.6891,
+          "agreement_with_llm_test": 0.8795
+        }
+      ],
+      "per_class_f1": {
+        "dokujo-tsushin": 0.711,
+        "it-life-hack": 0.567,
+        "kaden-channel": 0.482,
+        "livedoor-homme": 0.523,
+        "movie-enter": 0.871,
+        "peachy": 0.732,
+        "smax": 0.793,
+        "sports-watch": 0.876,
+        "topic-news": 0.646
+      },
+      "by_confidence": [
+        {
+          "threshold": 0.0,
+          "coverage": 1.0,
+          "accuracy": 0.713
+        },
+        {
+          "threshold": 0.5,
+          "coverage": 0.929,
+          "accuracy": 0.74
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.861,
+          "accuracy": 0.762
+        },
+        {
+          "threshold": 0.7,
+          "coverage": 0.799,
+          "accuracy": 0.787
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.702,
+          "accuracy": 0.81
+        },
+        {
+          "threshold": 0.9,
+          "coverage": 0.563,
+          "accuracy": 0.842
+        },
+        {
+          "threshold": 0.95,
+          "coverage": 0.442,
+          "accuracy": 0.869
+        }
+      ],
+      "confusions": [
+        {
+          "true": "kaden-channel",
+          "predicted": "topic-news",
+          "count": 30
+        },
+        {
+          "true": "it-life-hack",
+          "predicted": "smax",
+          "count": 29
+        },
+        {
+          "true": "it-life-hack",
+          "predicted": "topic-news",
+          "count": 29
+        },
+        {
+          "true": "dokujo-tsushin",
+          "predicted": "peachy",
+          "count": 28
+        },
+        {
+          "true": "kaden-channel",
+          "predicted": "smax",
+          "count": 26
+        },
+        {
+          "true": "kaden-channel",
+          "predicted": "it-life-hack",
+          "count": 18
+        },
+        {
+          "true": "sports-watch",
+          "predicted": "topic-news",
+          "count": 15
+        },
+        {
+          "true": "dokujo-tsushin",
+          "predicted": "movie-enter",
+          "count": 10
+        },
+        {
+          "true": "it-life-hack",
+          "predicted": "kaden-channel",
+          "count": 9
+        },
+        {
+          "true": "livedoor-homme",
+          "predicted": "sports-watch",
+          "count": 9
+        }
+      ]
+    }
+  },
+  "shot_only": {
+    "1": {
+      "accuracy": 0.5725,
+      "macro_f1": 0.5283
+    },
+    "3": {
+      "accuracy": 0.5969,
+      "macro_f1": 0.5615
+    },
+    "10": {
+      "accuracy": 0.6033,
+      "macro_f1": 0.5795
+    },
+    "30": {
+      "accuracy": 0.5996,
+      "macro_f1": 0.5811
+    },
+    "100": {
+      "accuracy": 0.596,
+      "macro_f1": 0.5789
+    }
+  }
+}

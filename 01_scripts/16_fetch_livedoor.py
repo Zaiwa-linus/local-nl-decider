@@ -5,6 +5,7 @@
 
 - 判定に使う文は「タイトル + 本文」の先頭 500 文字
 - 文中の連載名（「【Sports Watch】」「S-MAX」「独女」など）は、そのままだとカテゴリーの答えになるので取り除く
+- 【】で囲んだコーナー名（「【話題】」「【デジ通】」「【オトナ女子映画部】」など）も、連載ごとに決まっていて答えになるので取り除く
 - カテゴリーごとの割合を保って、学習用 70%・検証用 15%・評価用 15% に分ける（乱数の種は 0）
 各行は {"id", "category", "text"}。
 
@@ -45,6 +46,7 @@ with tarfile.open(archive) as tar:
         text = lines[2] + "\n" + "\n".join(lines[3:])
         for name in SOURCE_NAMES:
             text = text.replace(name, "")
+        text = re.sub(r"【[^】]*】", "", text)
         text = re.sub(r"[ \t　]+", " ", re.sub(r"\n\s*\n+", "\n", text)).strip()
         articles.append({"id": parts[2][:-4], "category": parts[1], "text": text[:MAX_CHARS]})
 

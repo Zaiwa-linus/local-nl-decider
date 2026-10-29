@@ -1,70 +1,70 @@
 {
   "train": 5159,
   "test": 1104,
-  "teacher_accuracy": 0.6531,
-  "teacher_train_agreement": 0.6466,
+  "teacher_accuracy": 0.6431,
+  "teacher_train_agreement": 0.642,
   "teacher_per_class": {
     "dokujo-tsushin": {
-      "precision": 0.805,
-      "recall": 0.508,
-      "f1-score": 0.623
+      "precision": 0.803,
+      "recall": 0.469,
+      "f1-score": 0.592
     },
     "it-life-hack": {
-      "precision": 0.622,
-      "recall": 0.431,
-      "f1-score": 0.509
+      "precision": 0.593,
+      "recall": 0.392,
+      "f1-score": 0.472
     },
     "kaden-channel": {
-      "precision": 0.59,
-      "recall": 0.354,
-      "f1-score": 0.442
+      "precision": 0.562,
+      "recall": 0.346,
+      "f1-score": 0.429
     },
     "livedoor-homme": {
-      "precision": 0.724,
-      "recall": 0.273,
-      "f1-score": 0.396
+      "precision": 0.719,
+      "recall": 0.299,
+      "f1-score": 0.422
     },
     "movie-enter": {
-      "precision": 0.82,
-      "recall": 0.877,
-      "f1-score": 0.848
+      "precision": 0.806,
+      "recall": 0.862,
+      "f1-score": 0.833
     },
     "peachy": {
-      "precision": 0.762,
-      "recall": 0.611,
-      "f1-score": 0.678
+      "precision": 0.743,
+      "recall": 0.619,
+      "f1-score": 0.675
     },
     "smax": {
-      "precision": 0.691,
+      "precision": 0.687,
       "recall": 0.877,
-      "f1-score": 0.773
+      "f1-score": 0.77
     },
     "sports-watch": {
-      "precision": 0.839,
-      "recall": 0.889,
-      "f1-score": 0.863
+      "precision": 0.85,
+      "recall": 0.881,
+      "f1-score": 0.865
     },
     "topic-news": {
-      "precision": 0.386,
+      "precision": 0.382,
       "recall": 0.922,
-      "f1-score": 0.545
+      "f1-score": 0.54
     }
   },
   "teacher_confusions": [
     {
       "true": "kaden-channel",
       "llm": "topic-news",
-      "count": 46
+      "count": 44
     },
     {
       "true": "it-life-hack",
       "llm": "topic-news",
-      "count": 29
+      "count": 32
     },
     {
       "true": "dokujo-tsushin",
       "llm": "topic-news",
-      "count": 24
+      "count": 25
     },
     {
       "true": "it-life-hack",
@@ -77,27 +77,27 @@
       "count": 23
     },
     {
-      "true": "kaden-channel",
-      "llm": "smax",
-      "count": 20
-    },
-    {
       "true": "dokujo-tsushin",
       "llm": "peachy",
-      "count": 19
+      "count": 21
     },
     {
       "true": "it-life-hack",
       "llm": "kaden-channel",
-      "count": 19
+      "count": 21
     },
     {
-      "true": "livedoor-homme",
+      "true": "kaden-channel",
+      "llm": "smax",
+      "count": 21
+    },
+    {
+      "true": "movie-enter",
       "llm": "topic-news",
       "count": 17
     },
     {
-      "true": "movie-enter",
+      "true": "livedoor-homme",
       "llm": "topic-news",
       "count": 16
     }
@@ -106,105 +106,105 @@
     "gold": {
       "C": 30,
       "cv_macro_f1": {
-        "1": 0.846614596284412,
-        "3": 0.8696157696514885,
-        "10": 0.8860979250268605,
-        "30": 0.8904969313541147,
-        "100": 0.8851334101496517
+        "1": 0.8285555780509559,
+        "3": 0.8513528762817856,
+        "10": 0.8630016955713511,
+        "30": 0.8633512876826244,
+        "100": 0.8590263366064844
       },
       "rows": [
         {
           "size": 500,
-          "accuracy": 0.8116,
-          "macro_f1": 0.8035,
-          "agreement_with_llm_test": 0.6884
+          "accuracy": 0.7926,
+          "macro_f1": 0.7833,
+          "agreement_with_llm_test": 0.6938
         },
         {
           "size": 1000,
-          "accuracy": 0.8542,
-          "macro_f1": 0.8469,
-          "agreement_with_llm_test": 0.6857
+          "accuracy": 0.8297,
+          "macro_f1": 0.8217,
+          "agreement_with_llm_test": 0.6766
         },
         {
           "size": 2000,
-          "accuracy": 0.8696,
-          "macro_f1": 0.8626,
-          "agreement_with_llm_test": 0.6911
+          "accuracy": 0.8505,
+          "macro_f1": 0.8434,
+          "agreement_with_llm_test": 0.6812
         },
         {
           "size": 5159,
-          "accuracy": 0.8813,
-          "macro_f1": 0.8748,
-          "agreement_with_llm_test": 0.6739
+          "accuracy": 0.8741,
+          "macro_f1": 0.8676,
+          "agreement_with_llm_test": 0.6712
         }
       ],
       "per_class_f1": {
-        "dokujo-tsushin": 0.871,
-        "it-life-hack": 0.836,
-        "kaden-channel": 0.866,
-        "livedoor-homme": 0.757,
+        "dokujo-tsushin": 0.867,
+        "it-life-hack": 0.828,
+        "kaden-channel": 0.803,
+        "livedoor-homme": 0.762,
         "movie-enter": 0.917,
-        "peachy": 0.857,
-        "smax": 0.932,
+        "peachy": 0.85,
+        "smax": 0.93,
         "sports-watch": 0.956,
-        "topic-news": 0.881
+        "topic-news": 0.895
       },
       "by_confidence": [
         {
           "threshold": 0.0,
           "coverage": 1.0,
-          "accuracy": 0.881
+          "accuracy": 0.874
         },
         {
           "threshold": 0.5,
-          "coverage": 0.954,
-          "accuracy": 0.904
+          "coverage": 0.944,
+          "accuracy": 0.892
         },
         {
           "threshold": 0.6,
-          "coverage": 0.906,
-          "accuracy": 0.926
+          "coverage": 0.885,
+          "accuracy": 0.918
         },
         {
           "threshold": 0.7,
-          "coverage": 0.855,
-          "accuracy": 0.948
+          "coverage": 0.819,
+          "accuracy": 0.936
         },
         {
           "threshold": 0.8,
-          "coverage": 0.771,
-          "accuracy": 0.965
+          "coverage": 0.734,
+          "accuracy": 0.952
         },
         {
           "threshold": 0.9,
-          "coverage": 0.639,
-          "accuracy": 0.977
+          "coverage": 0.584,
+          "accuracy": 0.964
         },
         {
           "threshold": 0.95,
-          "coverage": 0.496,
-          "accuracy": 0.991
+          "coverage": 0.455,
+          "accuracy": 0.98
         }
       ],
       "confusions": [
         {
           "true": "kaden-channel",
           "predicted": "it-life-hack",
-          "count": 11
-        },
-        {
-          "true": "livedoor-homme",
-          "predicted": "dokujo-tsushin",
-          "count": 10
-        },
-        {
-          "true": "dokujo-tsushin",
-          "predicted": "peachy",
-          "count": 7
+          "count": 15
         },
         {
           "true": "it-life-hack",
           "predicted": "smax",
+          "count": 9
+        },
+        {
+          "true": "livedoor-homme",
+          "predicted": "dokujo-tsushin",
+          "count": 8
+        },
+        {
+          "true": "dokujo-tsushin",
+          "predicted": "peachy",
           "count": 7
         },
         {
@@ -220,6 +220,11 @@
         {
           "true": "peachy",
           "predicted": "movie-enter",
+          "count": 6
+        },
+        {
+          "true": "it-life-hack",
+          "predicted": "kaden-channel",
           "count": 5
         },
         {
@@ -231,147 +236,142 @@
           "true": "topic-news",
           "predicted": "sports-watch",
           "count": 5
-        },
-        {
-          "true": "dokujo-tsushin",
-          "predicted": "it-life-hack",
-          "count": 4
         }
       ]
     },
     "llm": {
-      "C": 30,
+      "C": 10,
       "cv_macro_f1": {
-        "1": 0.8247679171772304,
-        "3": 0.8399018911683072,
-        "10": 0.8409493013583133,
-        "30": 0.8459134323031563,
-        "100": 0.8326545282231749
+        "1": 0.8217242217034523,
+        "3": 0.8372239349546836,
+        "10": 0.8437672210835908,
+        "30": 0.8422756981451471,
+        "100": 0.8342602993430143
       },
       "rows": [
         {
           "size": 500,
-          "accuracy": 0.6377,
-          "macro_f1": 0.6071,
-          "agreement_with_llm_test": 0.8234
+          "accuracy": 0.6178,
+          "macro_f1": 0.5817,
+          "agreement_with_llm_test": 0.817
         },
         {
           "size": 1000,
-          "accuracy": 0.6413,
-          "macro_f1": 0.6147,
-          "agreement_with_llm_test": 0.8361
+          "accuracy": 0.6322,
+          "macro_f1": 0.6033,
+          "agreement_with_llm_test": 0.8342
         },
         {
           "size": 2000,
-          "accuracy": 0.6621,
-          "macro_f1": 0.6411,
-          "agreement_with_llm_test": 0.8451
+          "accuracy": 0.6522,
+          "macro_f1": 0.6265,
+          "agreement_with_llm_test": 0.8442
         },
         {
           "size": 5159,
-          "accuracy": 0.6522,
-          "macro_f1": 0.6303,
-          "agreement_with_llm_test": 0.846
+          "accuracy": 0.6504,
+          "macro_f1": 0.6266,
+          "agreement_with_llm_test": 0.8424
         }
       ],
       "per_class_f1": {
-        "dokujo-tsushin": 0.613,
-        "it-life-hack": 0.47,
-        "kaden-channel": 0.449,
-        "livedoor-homme": 0.43,
+        "dokujo-tsushin": 0.616,
+        "it-life-hack": 0.49,
+        "kaden-channel": 0.429,
+        "livedoor-homme": 0.389,
         "movie-enter": 0.85,
-        "peachy": 0.676,
-        "smax": 0.792,
-        "sports-watch": 0.856,
-        "topic-news": 0.538
+        "peachy": 0.673,
+        "smax": 0.789,
+        "sports-watch": 0.871,
+        "topic-news": 0.533
       },
       "by_confidence": [
         {
           "threshold": 0.0,
           "coverage": 1.0,
-          "accuracy": 0.652
+          "accuracy": 0.65
         },
         {
           "threshold": 0.5,
-          "coverage": 0.959,
-          "accuracy": 0.663
+          "coverage": 0.936,
+          "accuracy": 0.673
         },
         {
           "threshold": 0.6,
-          "coverage": 0.903,
-          "accuracy": 0.683
+          "coverage": 0.855,
+          "accuracy": 0.7
         },
         {
           "threshold": 0.7,
-          "coverage": 0.847,
-          "accuracy": 0.707
+          "coverage": 0.773,
+          "accuracy": 0.727
         },
         {
           "threshold": 0.8,
-          "coverage": 0.763,
-          "accuracy": 0.724
+          "coverage": 0.669,
+          "accuracy": 0.762
         },
         {
           "threshold": 0.9,
-          "coverage": 0.638,
-          "accuracy": 0.763
+          "coverage": 0.522,
+          "accuracy": 0.804
         },
         {
           "threshold": 0.95,
-          "coverage": 0.527,
-          "accuracy": 0.801
+          "coverage": 0.405,
+          "accuracy": 0.852
         }
       ],
       "confusions": [
         {
           "true": "kaden-channel",
           "predicted": "topic-news",
-          "count": 43
+          "count": 45
         },
         {
           "true": "it-life-hack",
           "predicted": "topic-news",
-          "count": 33
+          "count": 34
         },
         {
           "true": "dokujo-tsushin",
           "predicted": "topic-news",
-          "count": 31
+          "count": 30
         },
         {
           "true": "it-life-hack",
           "predicted": "smax",
+          "count": 24
+        },
+        {
+          "true": "peachy",
+          "predicted": "topic-news",
           "count": 24
         },
         {
           "true": "it-life-hack",
           "predicted": "kaden-channel",
-          "count": 24
+          "count": 21
         },
         {
           "true": "kaden-channel",
           "predicted": "smax",
-          "count": 23
-        },
-        {
-          "true": "peachy",
-          "predicted": "topic-news",
           "count": 21
-        },
-        {
-          "true": "sports-watch",
-          "predicted": "topic-news",
-          "count": 19
         },
         {
           "true": "dokujo-tsushin",
           "predicted": "peachy",
-          "count": 16
+          "count": 18
         },
         {
           "true": "livedoor-homme",
           "predicted": "topic-news",
-          "count": 14
+          "count": 17
+        },
+        {
+          "true": "sports-watch",
+          "predicted": "topic-news",
+          "count": 17
         }
       ]
     }

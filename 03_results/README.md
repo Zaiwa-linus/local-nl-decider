@@ -31,3 +31,4 @@
 | ファイル | 内容 | 作るスクリプト |
 | --- | --- | --- |
 | [01_distill.md](04_livedoor/01_distill.md) | DeepSeek の正解率と、DeepSeek のラベルで学習した場合・正解のラベルで学習した場合の比較 | `19_distill_eval_livedoor.py` |
+| [02_distill_shots5.md](04_livedoor/02_distill_shots5.md) | 同じ比較を、DeepSeek にカテゴリーごとに 5 件の例を見せて（few-shot）付けたラベルで行ったもの。例だけで学習した場合とも比べる | `19_distill_eval_livedoor.py --shots 5` |

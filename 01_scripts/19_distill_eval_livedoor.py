@@ -5,11 +5,15 @@
   C は、それぞれのラベルを使った学習用の中の交差検証（5 分割）で選ぶ
 - 学習件数を 500 / 1,000 / 2,000 / 全件に変えた場合と、確信度のしきい値ごとの回答率・正解率も出す
 結果は 03_results/04_livedoor/01_distill.md と 01_distill.json に保存する。
+--shots N を付けると、few-shot で付けたラベル（labels_shots<N>.jsonl）を使い、02_distill_shots<N>.md と .json に保存する。
+このときは、DeepSeek に例として見せた記事（検証用から選んだ shots<N>.json）だけで学習した判定機とも比べる。
 
 このリポジトリの環境で実行する:
     uv run python 01_scripts/19_distill_eval_livedoor.py
+    uv run python 01_scripts/19_distill_eval_livedoor.py --shots 5
 """
 
+import argparse
 import json
 from collections import Counter
 from pathlib import Path
@@ -46,15 +50,34 @@ def choose_c(X, y):
     return max(scores, key=scores.get), scores
 
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--shots", type=int, default=0)
+args = parser.parse_args()
+labels_path = DATA_DIR / (f"labels_shots{args.shots}.jsonl" if args.shots else "labels.jsonl")
+out_stem = f"02_distill_shots{args.shots}" if args.shots else "01_distill"
+teacher_name = f"deepseek-flash、思考なし、カテゴリーごとに {args.shots} 件の例" if args.shots else "deepseek-flash、思考なし"
+
 train_records, X_train = load("train")
 test_records, X_test = load("test")
-with (DATA_DIR / "labels.jsonl").open(encoding="utf-8") as f:
+with labels_path.open(encoding="utf-8") as f:
     llm = {r["id"]: r["label"] for r in map(json.loads, f)}
 
 gold_train = np.array([r["category"] for r in train_records])
 llm_train = np.array([llm.get(r["id"]) or "" for r in train_records])
 gold_test = np.array([r["category"] for r in test_records])
 llm_test = np.array([llm.get(r["id"]) or "" for r in test_records])
+
+shot_only = None
+if args.shots:
+    validation_records, X_validation = load("validation")
+    shot_ids = set(json.loads((DATA_DIR / f"shots{args.shots}.json").read_text()))
+    shot_idx = [i for i, r in enumerate(validation_records) if r["id"] in shot_ids]
+    y_shot = np.array([validation_records[i]["category"] for i in shot_idx])
+    shot_only = {}
+    for c in C_CANDIDATES:
+        predicted = LogisticRegression(max_iter=3000, C=c).fit(X_validation[shot_idx], y_shot).predict(X_test)
+        shot_only[c] = {"accuracy": round(float((predicted == gold_test).mean()), 4), "macro_f1": round(float(f1_score(gold_test, predicted, average="macro")), 4)}
+    print(f"例 {len(shot_idx)} 件だけで学習: {shot_only}")
 
 teacher_accuracy = float((llm_test == gold_test).mean())
 teacher_train_agreement = float((llm_train == gold_train).mean())
@@ -104,18 +127,19 @@ summary = {
     "teacher_per_class": {k: {m: round(v[m], 3) for m in ["precision", "recall", "f1-score"]} for k, v in teacher_report.items() if k in set(gold_test)},
     "teacher_confusions": [{"true": t, "llm": p, "count": c} for (t, p), c in teacher_confusions],
     "classifiers": results,
+    "shot_only": shot_only,
 }
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-(RESULTS_DIR / "01_distill.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+(RESULTS_DIR / f"{out_stem}.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 gold, distilled = results["gold"], results["llm"]
 lines = [
-    "# 蒸留の評価（livedoor ニュース、DeepSeek のラベル）",
+    f"# 蒸留の評価（livedoor ニュース、DeepSeek のラベル{f'、{args.shots}-shot' if args.shots else ''}）",
     "",
-    f"学習用 {len(train_records):,} 件・評価用 {len(test_records):,} 件。文はタイトル＋本文の先頭 500 文字（連載名は取り除いた）。",
+    f"学習用 {len(train_records):,} 件・評価用 {len(test_records):,} 件。文はタイトル＋本文の先頭 500 文字（連載名と【】で囲んだコーナー名は取り除いた）。",
     "埋め込みは EmbeddingGemma 2（`Classification` プレフィックス）、判定機はロジスティック回帰。評価はすべて評価用の正解のラベルで行った。",
     "",
-    f"- 先生（deepseek-flash、思考なし）の正解率（評価用）: **{teacher_accuracy:.3f}**（学習用での正解との一致率 {teacher_train_agreement:.3f}）",
+    f"- 先生（{teacher_name}）の正解率（評価用）: **{teacher_accuracy:.3f}**（学習用での正解との一致率 {teacher_train_agreement:.3f}）",
     f"- C は学習用の中の交差検証で選んだ（正解のラベル: C={gold['C']}、DeepSeek のラベル: C={distilled['C']}）",
     "",
     "## 学習件数と正解率（評価用）",
@@ -125,6 +149,17 @@ lines = [
 ]
 for d, g in zip(distilled["rows"], gold["rows"]):
     lines.append(f"| {d['size']:,} | {d['accuracy']:.3f} | {d['macro_f1']:.3f} | {g['accuracy']:.3f} | {g['macro_f1']:.3f} |")
+if shot_only:
+    lines += [
+        "",
+        f"## DeepSeek に見せた例（{len(shot_idx)} 件）だけで学習した場合（評価用）",
+        "",
+        "件数が少なく交差検証で C を選べないので、すべての C の結果を載せる。",
+        "",
+        "| C | 正解率 | Macro-F1 |",
+        "| --- | --- | --- |",
+    ]
+    lines += [f"| {c} | {r['accuracy']:.3f} | {r['macro_f1']:.3f} |" for c, r in shot_only.items()]
 lines += [
     "",
     "## 確信度のしきい値ごとの回答率と正解率（評価用、全件で学習、補正なし）",
@@ -149,4 +184,4 @@ lines += ["", "## 先生（DeepSeek）が間違えた組み合わせ（評価用
 lines += [f"| {ja(t)} | {ja(p)} | {c} |" for (t, p), c in teacher_confusions]
 lines += ["", "## 正解のラベルで学習した判定機が間違えた組み合わせ（評価用、上位 10）", "", "| 正解 | 判定機 | 件数 |", "| --- | --- | --- |"]
 lines += [f"| {ja(r['true'])} | {ja(r['predicted'])} | {r['count']} |" for r in gold["confusions"]]
-(RESULTS_DIR / "01_distill.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+(RESULTS_DIR / f"{out_stem}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

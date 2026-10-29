@@ -14,7 +14,7 @@
 | [04_tune.py](04_tune.py) | 判定機のパラメーターを validation で選び、間違えやすい組み合わせも出す | このリポジトリの環境 |
 | [05_train_final.py](05_train_final.py) | 判定に使うロジスティック回帰を学習し、確信度の補正（温度）としきい値を validation で決めて `02_data/models/` に保存する | このリポジトリの環境 |
 | [07_llm_label.py](07_llm_label.py) | train の一部に DeepSeek でラベルを付ける（蒸留用。`.env` の `DEEPSEEK_API_KEY` を使う） | このリポジトリの環境（`uv run --env-file .env`） |
-| [08_distill_eval.py](08_distill_eval.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる | このリポジトリの環境 |
+| [08_distill_eval.py](08_distill_eval.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる。`--shots N` で few-shot のラベルを使う | このリポジトリの環境 |
 | [06_predict.py](06_predict.py) | 新しいテキストを判定して、カテゴリーと確信度を返す。しきい値を下回ったものは「要確認」と出す | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
 
 ## Phase 2（パブコメの意見、正解のない実データ）
@@ -40,7 +40,7 @@
 | --- | --- | --- |
 | [16_fetch_livedoor.py](16_fetch_livedoor.py) | livedoor ニュースコーパスを取得し、連載名を取り除いて学習・検証・評価用に分ける | このリポジトリの環境 |
 | [17_embed_livedoor.py](17_embed_livedoor.py) | 記事を EmbeddingGemma 2 で埋め込む | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
-| [18_label_livedoor.py](18_label_livedoor.py) | 学習用と評価用の記事に DeepSeek でラベルを付ける | このリポジトリの環境（`uv run --env-file .env`） |
+| [18_label_livedoor.py](18_label_livedoor.py) | 学習用と評価用の記事に DeepSeek でラベルを付ける。`--shots N` で、検証用からカテゴリーごとに N 件の例を見せる（few-shot） | このリポジトリの環境（`uv run --env-file .env`） |
 | [19_distill_eval_livedoor.py](19_distill_eval_livedoor.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる | このリポジトリの環境 |
 
 ## 共通
