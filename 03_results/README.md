@@ -25,3 +25,9 @@
 | --- | --- | --- |
 | [01_categories.md](03_pubcom_topic/01_categories.md) | DeepSeek が設計したカテゴリー | `11_design_categories.py --scheme topic` |
 | [02_classifier.md](03_pubcom_topic/02_classifier.md) | DeepSeek のラベルを正解とした判定機の精度 | `14_train_eval_pubcom.py --scheme topic` |
+
+## [04_livedoor/](04_livedoor/)（Phase 2: livedoor ニュース、正解のラベルあり）
+
+| ファイル | 内容 | 作るスクリプト |
+| --- | --- | --- |
+| [01_distill.md](04_livedoor/01_distill.md) | DeepSeek の正解率と、DeepSeek のラベルで学習した場合・正解のラベルで学習した場合の比較 | `19_distill_eval_livedoor.py` |

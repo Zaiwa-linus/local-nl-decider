@@ -15,4 +15,8 @@
 | `pubcom/labels_rerun1.jsonl`, `pubcom/labels_rerun2.jsonl`, `pubcom/labels_pro.jsonl` | 再現性の確認用に 1,000 件へ付け直したラベル | `12_label_opinions.py`（`--sample 1000 --out ...`） |
 | `pubcom/categories_topic.json`, `pubcom/labels_topic.jsonl`, `pubcom/labels_topic_rerun1.jsonl` | 話題で分けたカテゴリーと、そのラベル（rerun1 は再現性の確認用の 1,000 件） | `11_design_categories.py` / `12_label_opinions.py`（`--scheme topic`） |
 | `pubcom/opinions.npy` | 意見の埋め込み（行の順番は opinions.jsonl と同じ） | `13_embed_opinions.py` |
+| `livedoor/ldcc-20140209.tar.gz` | livedoor ニュースコーパス（配布されたまま） | `16_fetch_livedoor.py` |
+| `livedoor/<split>.jsonl` | 連載名を取り除いた記事（タイトル＋本文の先頭 500 文字）と正解のカテゴリー | `16_fetch_livedoor.py` |
+| `livedoor/<split>.npy` | 記事の埋め込み（行の順番は JSONL と同じ） | `17_embed_livedoor.py` |
+| `livedoor/labels.jsonl` | DeepSeek が学習用と評価用に付けたラベル | `18_label_livedoor.py` |
 | `models/massive_<label>.npz` | ロジスティック回帰の重み（coef, intercept, classes） | `05_train_final.py` |

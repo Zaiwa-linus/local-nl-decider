@@ -122,7 +122,20 @@ PUBCOM_TOPIC = {
     "other": "その他",
 }
 
-NAMES = {**MASSIVE_LABEL, **MASSIVE_SCENARIO, **MASSIVE_INTENT, **PUBCOM_TYPE, **PUBCOM_TOPIC}
+# livedoor ニュースのカテゴリー（連載名）
+LIVEDOOR = {
+    "topic-news": "一般ニュース",
+    "sports-watch": "スポーツ",
+    "it-life-hack": "IT",
+    "kaden-channel": "家電",
+    "movie-enter": "映画",
+    "dokujo-tsushin": "独身女性のコラム",
+    "smax": "スマートフォン",
+    "livedoor-homme": "男性向け",
+    "peachy": "女性向け",
+}
+
+NAMES = {**LIVEDOOR, **MASSIVE_LABEL, **MASSIVE_SCENARIO, **MASSIVE_INTENT, **PUBCOM_TYPE, **PUBCOM_TOPIC}
 
 
 def ja(label):
