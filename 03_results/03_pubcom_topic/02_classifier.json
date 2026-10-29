@@ -1,0 +1,204 @@
+{
+  "opinions": 8770,
+  "cases": 249,
+  "train": 7387,
+  "test": 1383,
+  "label_distribution": {
+    "public_admin_justice": 1535,
+    "digital_telecom_internet": 1253,
+    "social_health_labor": 1106,
+    "finance_governance_postal": 1034,
+    "energy_nuclear": 968,
+    "competition_ip_trade": 675,
+    "transport_infrastructure": 559,
+    "environment_climate": 548,
+    "agriculture_forestry_fisheries_animal": 359,
+    "disaster_resilience": 301,
+    "national_security_foreign": 232,
+    "other": 200
+  },
+  "cv_macro_f1": {
+    "1": 0.4210992197239081,
+    "3": 0.4780873742419057,
+    "10": 0.5222469972425858,
+    "30": 0.5250526949256856
+  },
+  "C": 30,
+  "accuracy": 0.6385,
+  "macro_f1": 0.56,
+  "per_class": {
+    "agriculture_forestry_fisheries_animal": {
+      "precision": 0.761,
+      "recall": 0.496,
+      "f1-score": 0.601,
+      "support": 141.0
+    },
+    "competition_ip_trade": {
+      "precision": 0.569,
+      "recall": 0.659,
+      "f1-score": 0.611,
+      "support": 88.0
+    },
+    "digital_telecom_internet": {
+      "precision": 0.589,
+      "recall": 0.434,
+      "f1-score": 0.5,
+      "support": 76.0
+    },
+    "disaster_resilience": {
+      "precision": 0.545,
+      "recall": 0.545,
+      "f1-score": 0.545,
+      "support": 22.0
+    },
+    "energy_nuclear": {
+      "precision": 0.659,
+      "recall": 0.65,
+      "f1-score": 0.654,
+      "support": 137.0
+    },
+    "environment_climate": {
+      "precision": 0.659,
+      "recall": 0.534,
+      "f1-score": 0.59,
+      "support": 206.0
+    },
+    "finance_governance_postal": {
+      "precision": 0.565,
+      "recall": 0.464,
+      "f1-score": 0.51,
+      "support": 84.0
+    },
+    "national_security_foreign": {
+      "precision": 0.5,
+      "recall": 0.417,
+      "f1-score": 0.455,
+      "support": 12.0
+    },
+    "other": {
+      "precision": 0.304,
+      "recall": 0.241,
+      "f1-score": 0.269,
+      "support": 29.0
+    },
+    "public_admin_justice": {
+      "precision": 0.52,
+      "recall": 0.729,
+      "f1-score": 0.607,
+      "support": 236.0
+    },
+    "social_health_labor": {
+      "precision": 0.808,
+      "recall": 0.903,
+      "f1-score": 0.853,
+      "support": 279.0
+    },
+    "transport_infrastructure": {
+      "precision": 0.562,
+      "recall": 0.493,
+      "f1-score": 0.526,
+      "support": 73.0
+    }
+  },
+  "by_confidence": [
+    {
+      "threshold": 0.0,
+      "coverage": 1.0,
+      "accuracy": 0.638
+    },
+    {
+      "threshold": 0.5,
+      "coverage": 0.833,
+      "accuracy": 0.702
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.702,
+      "accuracy": 0.74
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.597,
+      "accuracy": 0.778
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.474,
+      "accuracy": 0.829
+    },
+    {
+      "threshold": 0.9,
+      "coverage": 0.33,
+      "accuracy": 0.893
+    }
+  ],
+  "learning_curve": [
+    {
+      "fraction": 0.25,
+      "size": 2163,
+      "accuracy": 0.5235
+    },
+    {
+      "fraction": 0.5,
+      "size": 3819,
+      "accuracy": 0.6189
+    },
+    {
+      "fraction": 1.0,
+      "size": 7387,
+      "accuracy": 0.6385
+    }
+  ],
+  "confusions": [
+    {
+      "deepseek": "environment_climate",
+      "classifier": "energy_nuclear",
+      "count": 32
+    },
+    {
+      "deepseek": "finance_governance_postal",
+      "classifier": "public_admin_justice",
+      "count": 29
+    },
+    {
+      "deepseek": "agriculture_forestry_fisheries_animal",
+      "classifier": "environment_climate",
+      "count": 27
+    },
+    {
+      "deepseek": "agriculture_forestry_fisheries_animal",
+      "classifier": "public_admin_justice",
+      "count": 21
+    },
+    {
+      "deepseek": "public_admin_justice",
+      "classifier": "social_health_labor",
+      "count": 18
+    },
+    {
+      "deepseek": "environment_climate",
+      "classifier": "public_admin_justice",
+      "count": 18
+    },
+    {
+      "deepseek": "social_health_labor",
+      "classifier": "public_admin_justice",
+      "count": 16
+    },
+    {
+      "deepseek": "competition_ip_trade",
+      "classifier": "public_admin_justice",
+      "count": 15
+    },
+    {
+      "deepseek": "other",
+      "classifier": "public_admin_justice",
+      "count": 15
+    },
+    {
+      "deepseek": "transport_infrastructure",
+      "classifier": "public_admin_justice",
+      "count": 15
+    }
+  ]
+}

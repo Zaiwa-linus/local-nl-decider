@@ -1,0 +1,166 @@
+{
+  "opinions": 1000,
+  "agreement": [
+    {
+      "a": "flash_1",
+      "b": "flash_2",
+      "agreement": 0.964,
+      "kappa": 0.9502
+    },
+    {
+      "a": "flash_1",
+      "b": "flash_3",
+      "agreement": 0.959,
+      "kappa": 0.9433
+    },
+    {
+      "a": "flash_2",
+      "b": "flash_3",
+      "agreement": 0.989,
+      "kappa": 0.9848
+    },
+    {
+      "a": "flash_1",
+      "b": "pro",
+      "agreement": 0.871,
+      "kappa": 0.8205
+    },
+    {
+      "a": "flash_2",
+      "b": "pro",
+      "agreement": 0.87,
+      "kappa": 0.8198
+    },
+    {
+      "a": "flash_3",
+      "b": "pro",
+      "agreement": 0.868,
+      "kappa": 0.8171
+    }
+  ],
+  "flash_all_three_agree": 0.956,
+  "flash_and_pro_all_agree": 0.85,
+  "per_class": [
+    {
+      "category": "amendment_request",
+      "count": 480,
+      "flash_stable": 0.954,
+      "pro_agrees": 0.908
+    },
+    {
+      "category": "clarification_request",
+      "count": 149,
+      "flash_stable": 0.973,
+      "pro_agrees": 0.913
+    },
+    {
+      "category": "policy_opposition",
+      "count": 122,
+      "flash_stable": 0.984,
+      "pro_agrees": 0.885
+    },
+    {
+      "category": "new_policy_proposal",
+      "count": 68,
+      "flash_stable": 0.912,
+      "pro_agrees": 0.765
+    },
+    {
+      "category": "policy_support",
+      "count": 64,
+      "flash_stable": 0.969,
+      "pro_agrees": 0.859
+    },
+    {
+      "category": "process_request",
+      "count": 37,
+      "flash_stable": 0.946,
+      "pro_agrees": 0.649
+    },
+    {
+      "category": "editorial_correction",
+      "count": 33,
+      "flash_stable": 0.97,
+      "pro_agrees": 0.818
+    },
+    {
+      "category": "evidence_sharing",
+      "count": 20,
+      "flash_stable": 0.85,
+      "pro_agrees": 0.9
+    },
+    {
+      "category": "other",
+      "count": 14,
+      "flash_stable": 1.0,
+      "pro_agrees": 0.643
+    },
+    {
+      "category": "data_request",
+      "count": 13,
+      "flash_stable": 0.846,
+      "pro_agrees": 0.462
+    }
+  ],
+  "flash_1_to_pro_changes": [
+    {
+      "flash": "amendment_request",
+      "pro": "policy_opposition",
+      "count": 19
+    },
+    {
+      "flash": "new_policy_proposal",
+      "pro": "amendment_request",
+      "count": 14
+    },
+    {
+      "flash": "amendment_request",
+      "pro": "policy_support",
+      "count": 9
+    },
+    {
+      "flash": "amendment_request",
+      "pro": "clarification_request",
+      "count": 9
+    },
+    {
+      "flash": "process_request",
+      "pro": "amendment_request",
+      "count": 9
+    },
+    {
+      "flash": "clarification_request",
+      "pro": "amendment_request",
+      "count": 7
+    },
+    {
+      "flash": "data_request",
+      "pro": "amendment_request",
+      "count": 7
+    },
+    {
+      "flash": "policy_opposition",
+      "pro": "clarification_request",
+      "count": 5
+    },
+    {
+      "flash": "editorial_correction",
+      "pro": "amendment_request",
+      "count": 4
+    },
+    {
+      "flash": "process_request",
+      "pro": "policy_support",
+      "count": 3
+    }
+  ],
+  "classifier": {
+    "test_opinions": 172,
+    "vs_flash_1": 0.7093,
+    "vs_pro": 0.6977,
+    "flash_stable_count": 165,
+    "vs_flash_1_when_flash_stable": 0.7212,
+    "all_stable_count": 150,
+    "vs_flash_1_when_all_stable": 0.7333
+  }
+}

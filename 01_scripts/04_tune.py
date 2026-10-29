@@ -3,7 +3,7 @@
 - ラベル: シナリオ（18 種類）と意図（60 種類）
 - 次元: 768
 - 判定機: ロジスティック回帰（C）、k-NN（k）、MLP（隠れ層の大きさ）
-結果は 03_results/massive_tuned.json と 03_results/massive_tuned.md に保存する。
+結果は 03_results/01_massive/02_tuned.json と 02_tuned.md に保存する。
 
 このリポジトリの環境で実行する:
     uv run python 01_scripts/04_tune.py
@@ -20,9 +20,11 @@ from sklearn.metrics import accuracy_score, f1_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 
+from label_names import ja
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "02_data" / "massive"
-RESULTS_DIR = ROOT / "03_results"
+RESULTS_DIR = ROOT / "03_results" / "01_massive"
 
 
 def load(split):
@@ -94,8 +96,8 @@ for label in ["scenario", "intent"]:
             wrong = Counter((t, p) for t, p in zip(y_test, predicted) if t != p)
             confusions[label] = [{"true": t, "predicted": p, "count": c} for (t, p), c in wrong.most_common(10)]
 
-RESULTS_DIR.mkdir(exist_ok=True)
-(RESULTS_DIR / "massive_tuned.json").write_text(
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+(RESULTS_DIR / "02_tuned.json").write_text(
     json.dumps({"results": results, "confusions": confusions}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
 )
 
@@ -110,10 +112,10 @@ lines = [
 for r in results:
     params = ", ".join(f"{k}={v}" for k, v in r["params"].items())
     lines.append(
-        f"| {r['label']} | {r['classifier']} | {params} | {r['validation_macro_f1']:.3f} | {r['accuracy']:.3f} "
+        f"| {ja(r['label'])} | {r['classifier']} | {params} | {r['validation_macro_f1']:.3f} | {r['accuracy']:.3f} "
         f"| {r['macro_f1']:.3f} | {r['train_seconds']} | {r['predict_per_second']:,} |"
     )
 for label, pairs in confusions.items():
-    lines += ["", f"## 間違えやすい組み合わせ（{label}、ロジスティック回帰、上位 10）", "", "| 正解 | 予測 | 件数 |", "| --- | --- | --- |"]
-    lines += [f"| {p['true']} | {p['predicted']} | {p['count']} |" for p in pairs]
-(RESULTS_DIR / "massive_tuned.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    lines += ["", f"## 間違えやすい組み合わせ（{ja(label)}、ロジスティック回帰、上位 10）", "", "| 正解 | 予測 | 件数 |", "| --- | --- | --- |"]
+    lines += [f"| {ja(p['true'])} | {ja(p['predicted'])} | {p['count']} |" for p in pairs]
+(RESULTS_DIR / "02_tuned.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

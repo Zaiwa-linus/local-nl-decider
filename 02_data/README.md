@@ -8,4 +8,11 @@
 | `massive/<split>.jsonl` | MASSIVE（日本語）のテキストとラベル（シナリオ、意図） | `01_fetch_massive.py` |
 | `massive/<split>.npy` | 768 次元の埋め込み（行の順番は JSONL と同じ） | `02_embed.py` |
 | `deepseek/massive_scenario_labels.jsonl` | DeepSeek が train の一部に付けたシナリオのラベル | `07_llm_label.py` |
+| `pubcom/cases.jsonl`, `pubcom/pdf/` | パブコメの結果公示案件の情報と、結果の PDF | `09_fetch_pubcom.py` |
+| `pubcom/opinions.jsonl` | PDF から取り出した意見の要旨 | `10_extract_opinions.py` |
+| `pubcom/categories.json` | DeepSeek が設計したカテゴリー | `11_design_categories.py` |
+| `pubcom/labels.jsonl` | DeepSeek が付けたラベル | `12_label_opinions.py` |
+| `pubcom/labels_rerun1.jsonl`, `pubcom/labels_rerun2.jsonl`, `pubcom/labels_pro.jsonl` | 再現性の確認用に 1,000 件へ付け直したラベル | `12_label_opinions.py`（`--sample 1000 --out ...`） |
+| `pubcom/categories_topic.json`, `pubcom/labels_topic.jsonl`, `pubcom/labels_topic_rerun1.jsonl` | 話題で分けたカテゴリーと、そのラベル（rerun1 は再現性の確認用の 1,000 件） | `11_design_categories.py` / `12_label_opinions.py`（`--scheme topic`） |
+| `pubcom/opinions.npy` | 意見の埋め込み（行の順番は opinions.jsonl と同じ） | `13_embed_opinions.py` |
 | `models/massive_<label>.npz` | ロジスティック回帰の重み（coef, intercept, classes） | `05_train_final.py` |

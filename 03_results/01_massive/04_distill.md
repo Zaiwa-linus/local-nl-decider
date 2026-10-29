@@ -29,13 +29,13 @@ DeepSeek（deepseek-flash、思考なし）が train の 2,000 件に付けた�
 
 | 正解 | LLM | 件数 |
 | --- | --- | --- |
-| qa | general | 14 |
-| general | qa | 12 |
-| play | general | 12 |
-| music | play | 10 |
-| news | qa | 7 |
-| news | general | 6 |
-| general | recommendation | 5 |
-| audio | general | 5 |
-| calendar | general | 4 |
-| calendar | datetime | 4 |
+| 質問 | 雑談・その他 | 14 |
+| 雑談・その他 | 質問 | 12 |
+| 再生 | 雑談・その他 | 12 |
+| 音楽の好み・設定 | 再生 | 10 |
+| ニュース | 質問 | 7 |
+| ニュース | 雑談・その他 | 6 |
+| 雑談・その他 | おすすめ | 5 |
+| 音量 | 雑談・その他 | 5 |
+| 予定 | 雑談・その他 | 4 |
+| 予定 | 日時 | 4 |

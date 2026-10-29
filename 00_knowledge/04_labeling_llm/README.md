@@ -57,7 +57,7 @@ Phase 2 では、LLM にラベルを付けさせ、それを学習データに�
 - トークン: 入力 837,133（うちキャッシュ 512,000）、出力 14,322。料金表から計算して約 $0.06
 - 形式が崩れた応答: 0 件
 - 正解との一致率: 90.4%
-- 詳しくは [03_results/massive_distill.md](../../03_results/massive_distill.md)
+- 詳しくは [03_results/01_massive/04_distill.md](../../03_results/01_massive/04_distill.md)
 
 ## ローカルのオープンモデル
 

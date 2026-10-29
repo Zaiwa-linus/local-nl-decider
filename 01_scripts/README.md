@@ -17,6 +17,21 @@
 | [08_distill_eval.py](08_distill_eval.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる | このリポジトリの環境 |
 | [06_predict.py](06_predict.py) | 新しいテキストを判定して、カテゴリーと確信度を返す。しきい値を下回ったものは「要確認」と出す | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
 
+## Phase 2（パブコメの意見、正解のない実データ）
+
+番号の順に実行する。DeepSeek を使うものは `.env` の `DEEPSEEK_API_KEY` を使う（`uv run --env-file .env`）。
+11・12・14 は `--scheme topic` を付けると、「意見の種類」ではなく「話題」で分けたカテゴリーで同じことをする（結果は `_topic` の付いたファイルに保存する）。
+
+| スクリプト | 内容 | 実行する環境 |
+| --- | --- | --- |
+| [09_fetch_pubcom.py](09_fetch_pubcom.py) | e-Gov から、パブコメの結果の PDF を取得する（1 秒間隔） | このリポジトリの環境 |
+| [10_extract_opinions.py](10_extract_opinions.py) | PDF から意見の要旨を原文のまま取り出す（DeepSeek。原文と一致しないものは捨てる） | このリポジトリの環境 |
+| [11_design_categories.py](11_design_categories.py) | 意見のカテゴリーを DeepSeek に設計させる | このリポジトリの環境 |
+| [12_label_opinions.py](12_label_opinions.py) | 意見に DeepSeek でラベルを付ける（これを正解にする） | このリポジトリの環境 |
+| [13_embed_opinions.py](13_embed_opinions.py) | 意見を EmbeddingGemma 2 で埋め込む | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
+| [14_train_eval_pubcom.py](14_train_eval_pubcom.py) | 判定機を学習し、DeepSeek のラベルを正解として評価する | このリポジトリの環境 |
+| [15_label_stability.py](15_label_stability.py) | DeepSeek のラベルの再現性を確かめる（12 で `--sample 1000 --out ...` を付けて付け直したラベルと比べる） | このリポジトリの環境 |
+
 ## サンプル
 
 | スクリプト | 内容 | 実行する環境 |

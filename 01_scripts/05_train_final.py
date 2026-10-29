@@ -7,7 +7,7 @@
 5. 重み・温度・しきい値を 02_data/models/massive_<label>.npz に保存する
 
 温度としきい値は train だけで学習した判定機に合わせて決めているので、validation を足して学習し直すことはしない。
-結果は 03_results/massive_confidence.md と 03_results/massive_confidence.json に保存する。
+結果は 03_results/01_massive/03_confidence.md と 03_confidence.json に保存する。
 
 このリポジトリの環境で実行する:
     uv run python 01_scripts/05_train_final.py
@@ -19,10 +19,12 @@ from pathlib import Path
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 
+from label_names import ja
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "02_data" / "massive"
 MODEL_DIR = ROOT / "02_data" / "models"
-RESULTS_DIR = ROOT / "03_results"
+RESULTS_DIR = ROOT / "03_results" / "01_massive"
 
 # 04_tune.py で validation から選んだ値
 C_BY_LABEL = {"scenario": 30, "intent": 100}
@@ -138,7 +140,7 @@ for label, c in C_BY_LABEL.items():
 
     lines += [
         "",
-        f"## {label}",
+        f"## {ja(label)}",
         "",
         f"- 温度: {temperature:.2f}（1 より大きいと、補正前は自信過剰だったということ）",
         f"- test の正解率（全件）: {test_correct.mean():.3f}",
@@ -168,6 +170,6 @@ for label, c in C_BY_LABEL.items():
         for t in thresholds
     ]
 
-RESULTS_DIR.mkdir(exist_ok=True)
-(RESULTS_DIR / "massive_confidence.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-(RESULTS_DIR / "massive_confidence.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+(RESULTS_DIR / "03_confidence.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+(RESULTS_DIR / "03_confidence.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

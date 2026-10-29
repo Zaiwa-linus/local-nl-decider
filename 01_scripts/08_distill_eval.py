@@ -6,7 +6,7 @@
 - 確信度（いちばん高い確率）のしきい値ごとに、回答率と回答したものの正解率を test で出す（2,000 件で学習したものと train 全件で学習したもの）
   本番では正解のラベルがないので、確信度は温度で補正しない
 判定機はロジスティック回帰（C=30、05_train_final.py と同じ）。評価には test の正解ラベルを使う。
-結果は 03_results/massive_distill.md と 03_results/massive_distill.json に保存する。
+結果は 03_results/01_massive/04_distill.md と 04_distill.json に保存する。
 
 このリポジトリの環境で実行する:
     uv run python 01_scripts/08_distill_eval.py
@@ -20,10 +20,12 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score
 
+from label_names import ja
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "02_data" / "massive"
 LABELS_PATH = ROOT / "02_data" / "deepseek" / "massive_scenario_labels.jsonl"
-RESULTS_DIR = ROOT / "03_results"
+RESULTS_DIR = ROOT / "03_results" / "01_massive"
 SIZES = [500, 1000, 2000]
 THRESHOLDS = [0.0, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
 
@@ -88,8 +90,8 @@ confidence_rows = {
 for name, values in confidence_rows.items():
     print(name, values)
 
-RESULTS_DIR.mkdir(exist_ok=True)
-(RESULTS_DIR / "massive_distill.json").write_text(
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+(RESULTS_DIR / "04_distill.json").write_text(
     json.dumps(
         {
             "agreement": round(agreement, 4),
@@ -135,5 +137,5 @@ for k, threshold in enumerate(THRESHOLDS):
     cells = [f"{confidence_rows[n][k]['coverage']:.3f} / {confidence_rows[n][k]['accuracy']:.3f}" for n in names]
     lines.append(f"| {threshold} | " + " | ".join(cells) + " |")
 lines += ["", "## LLM と正解が食い違った組み合わせ（上位 10）", "", "| 正解 | LLM | 件数 |", "| --- | --- | --- |"]
-lines += [f"| {t} | {p} | {c} |" for (t, p), c in disagreements]
-(RESULTS_DIR / "massive_distill.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+lines += [f"| {ja(t)} | {ja(p)} | {c} |" for (t, p), c in disagreements]
+(RESULTS_DIR / "04_distill.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

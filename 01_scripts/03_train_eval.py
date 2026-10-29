@@ -4,7 +4,7 @@
 - 次元: 768 と 256（256 は先頭を切り詰めて正規化し直す）
 - 判定機: ロジスティック回帰、k-NN
 - 学習は train、評価は test を使う
-結果は 03_results/massive.json と 03_results/massive.md に保存する。
+結果は 03_results/01_massive/01_baseline.json と 01_baseline.md に保存する。
 
 このリポジトリの環境で実行する:
     uv run python 01_scripts/03_train_eval.py
@@ -19,9 +19,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.neighbors import KNeighborsClassifier
 
+from label_names import ja
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "02_data" / "massive"
-RESULTS_DIR = ROOT / "03_results"
+RESULTS_DIR = ROOT / "03_results" / "01_massive"
 
 
 def load(split):
@@ -73,8 +75,8 @@ for label in ["scenario", "intent"]:
             results.append(result)
             print(result)
 
-RESULTS_DIR.mkdir(exist_ok=True)
-(RESULTS_DIR / "massive.json").write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+(RESULTS_DIR / "01_baseline.json").write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 lines = [
     "# MASSIVE（日本語）の評価結果",
@@ -86,7 +88,7 @@ lines = [
 ]
 for r in results:
     lines.append(
-        f"| {r['label']} | {r['classes']} | {r['dim']} | {r['classifier']} | {r['accuracy']:.3f} | {r['macro_f1']:.3f} "
+        f"| {ja(r['label'])} | {r['classes']} | {r['dim']} | {r['classifier']} | {r['accuracy']:.3f} | {r['macro_f1']:.3f} "
         f"| {r['train_seconds']} | {r['predict_per_second']:,} |"
     )
-(RESULTS_DIR / "massive.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+(RESULTS_DIR / "01_baseline.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
