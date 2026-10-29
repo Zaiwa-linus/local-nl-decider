@@ -23,3 +23,6 @@
 | `livedoor/shots<N>.json` | 例として見せた検証用の記事の ID | `18_label_livedoor.py --shots N` |
 | `livedoor/with_corner/` | コーナー名を残していたときのデータ・埋め込み・ラベル（比較用） | `16`〜`18`（変更前） |
 | `models/massive_<label>.npz` | ロジスティック回帰の重み（coef, intercept, classes） | `05_train_final.py` |
+| `mlit/defects_<年>.jsonl` | 国交省の自動車不具合情報（申告内容の要約、装置名、車名、走行距離など。都道府県と型式は除く） | `21_fetch_mlit_defects.py` |
+| `mlit/<split>.jsonl` | 正規化して【】の印を取り除いた申告内容の要約と、装置名（14 種類） | `22_split_mlit.py` |
+| `mlit/<split>.npy` | 申告内容の要約の埋め込み（行の順番は JSONL と同じ） | `23_embed_mlit.py` |

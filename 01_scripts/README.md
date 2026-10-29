@@ -44,6 +44,19 @@
 | [19_distill_eval_livedoor.py](19_distill_eval_livedoor.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる | このリポジトリの環境 |
 | [20_feedback_rules_livedoor.py](20_feedback_rules_livedoor.py) | 人の異議を、埋め込みが近い記事と並べて DeepSeek に言語化させ、境目のルールにする。言語化に使っていない記事で効くか確かめて、採用を決める | このリポジトリの環境（`uv run --env-file .env`） |
 
+## Phase 2（国交省の自動車不具合情報、正解のある実データ）
+
+番号の順に実行する。
+
+| スクリプト | 内容 | 実行する環境 |
+| --- | --- | --- |
+| [21_fetch_mlit_defects.py](21_fetch_mlit_defects.py) | 自動車不具合情報ホットラインから、不具合情報（申告内容の要約と装置名）を年ごとに取得する（1 秒間隔） | このリポジトリの環境 |
+| [22_split_mlit.py](22_split_mlit.py) | 文と装置名を正規化し、【】の印を取り除いて、学習・検証・評価用に分ける | このリポジトリの環境 |
+| [23_embed_mlit.py](23_embed_mlit.py) | 申告内容の要約を EmbeddingGemma 2 で埋め込む | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
+| [24_baseline_mlit.py](24_baseline_mlit.py) | 正解の装置名をそのまま学習した判定機の精度を測る（蒸留と比べるための基準） | このリポジトリの環境 |
+| [25_clean_train_mlit.py](25_clean_train_mlit.py) | 教師データから、付け間違いの疑いや境目の申告を埋め込みで見つけて除き、学習し直して比べる | このリポジトリの環境 |
+| [26_count_mlit.py](26_count_mlit.py) | 装置名ごとの件数を、1 つに決めて数える場合と、確率で按分する場合とで比べる | このリポジトリの環境 |
+
 ## 共通
 
 | スクリプト | 内容 |

@@ -35,3 +35,11 @@
 | [03_feedback_rules.md](04_livedoor/03_feedback_rules.md) | 人の異議（正解のラベルで代用）を近い記事と並べて言語化した境目のルールと、採用するかの確かめ | `20_feedback_rules_livedoor.py` |
 | [04_feedback_rules_dokujo.md](04_livedoor/04_feedback_rules_dokujo.md) | 同じ確かめを、独身女性のコラム / 映画、独身女性のコラム / 女性向けで行ったもの | `20_feedback_rules_livedoor.py --pairs ... --name 04_feedback_rules_dokujo` |
 | [05_distill_shots5_rules.md](04_livedoor/05_distill_shots5_rules.md) | 採用した境目のルールを足して、独身女性のコラムか女性向けと判定された記事だけ付け直したラベルで、蒸留を評価したもの | `19_distill_eval_livedoor.py --shots 5 --rules` |
+
+## [05_mlit/](05_mlit/)（Phase 2: 国交省の自動車不具合情報、正解のラベルあり）
+
+| ファイル | 内容 | 作るスクリプト |
+| --- | --- | --- |
+| [01_baseline.md](05_mlit/01_baseline.md) | 正解の装置名をそのまま学習した判定機の精度（蒸留と比べるための基準） | `24_baseline_mlit.py` |
+| [02_clean_train.md](05_mlit/02_clean_train.md) | 教師データから付け間違いの疑い・境目の申告を除いて学習し直した場合と、ランダムに除いた場合の比較 | `25_clean_train_mlit.py` |
+| [03_count.md](05_mlit/03_count.md) | 装置名ごとの件数の数え方（1 つに決める / 確率で按分する）と、正解の件数とのずれ | `26_count_mlit.py` |
