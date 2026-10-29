@@ -6,11 +6,13 @@
 - 学習件数を 500 / 1,000 / 2,000 / 全件に変えた場合と、確信度のしきい値ごとの回答率・正解率も出す
 結果は 03_results/04_livedoor/01_distill.md と 01_distill.json に保存する。
 --shots N を付けると、few-shot で付けたラベル（labels_shots<N>.jsonl）を使い、02_distill_shots<N>.md と .json に保存する。
-このときは、DeepSeek に例として見せた記事（検証用から選んだ shots<N>.json）だけで学習した判定機とも比べる。
+--rules を付けると、境目のルールも足して付け直したラベル（labels_shots<N>_rules.jsonl）を使い、05_distill_shots<N>_rules.md と .json に保存する。
+--shots N のときは、DeepSeek に例として見せた記事（検証用から選んだ shots<N>.json）だけで学習した判定機とも比べる。
 
 このリポジトリの環境で実行する:
     uv run python 01_scripts/19_distill_eval_livedoor.py
     uv run python 01_scripts/19_distill_eval_livedoor.py --shots 5
+    uv run python 01_scripts/19_distill_eval_livedoor.py --shots 5 --rules
 """
 
 import argparse
@@ -52,10 +54,12 @@ def choose_c(X, y):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--shots", type=int, default=0)
+parser.add_argument("--rules", action="store_true")
 args = parser.parse_args()
-labels_path = DATA_DIR / (f"labels_shots{args.shots}.jsonl" if args.shots else "labels.jsonl")
-out_stem = f"02_distill_shots{args.shots}" if args.shots else "01_distill"
-teacher_name = f"deepseek-flash、思考なし、カテゴリーごとに {args.shots} 件の例" if args.shots else "deepseek-flash、思考なし"
+suffix = (f"_shots{args.shots}" if args.shots else "") + ("_rules" if args.rules else "")
+labels_path = DATA_DIR / f"labels{suffix}.jsonl"
+out_stem = f"05_distill{suffix}" if args.rules else f"02_distill{suffix}" if args.shots else "01_distill"
+teacher_name = "deepseek-flash、思考なし" + (f"、カテゴリーごとに {args.shots} 件の例" if args.shots else "") + ("、境目のルール" if args.rules else "")
 
 train_records, X_train = load("train")
 test_records, X_test = load("test")
@@ -134,7 +138,7 @@ RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 gold, distilled = results["gold"], results["llm"]
 lines = [
-    f"# 蒸留の評価（livedoor ニュース、DeepSeek のラベル{f'、{args.shots}-shot' if args.shots else ''}）",
+    f"# 蒸留の評価（livedoor ニュース、DeepSeek のラベル{f'、{args.shots}-shot' if args.shots else ''}{'、境目のルール' if args.rules else ''}）",
     "",
     f"学習用 {len(train_records):,} 件・評価用 {len(test_records):,} 件。文はタイトル＋本文の先頭 500 文字（連載名と【】で囲んだコーナー名は取り除いた）。",
     "埋め込みは EmbeddingGemma 2（`Classification` プレフィックス）、判定機はロジスティック回帰。評価はすべて評価用の正解のラベルで行った。",

@@ -32,3 +32,6 @@
 | --- | --- | --- |
 | [01_distill.md](04_livedoor/01_distill.md) | DeepSeek の正解率と、DeepSeek のラベルで学習した場合・正解のラベルで学習した場合の比較 | `19_distill_eval_livedoor.py` |
 | [02_distill_shots5.md](04_livedoor/02_distill_shots5.md) | 同じ比較を、DeepSeek にカテゴリーごとに 5 件の例を見せて（few-shot）付けたラベルで行ったもの。例だけで学習した場合とも比べる | `19_distill_eval_livedoor.py --shots 5` |
+| [03_feedback_rules.md](04_livedoor/03_feedback_rules.md) | 人の異議（正解のラベルで代用）を近い記事と並べて言語化した境目のルールと、採用するかの確かめ | `20_feedback_rules_livedoor.py` |
+| [04_feedback_rules_dokujo.md](04_livedoor/04_feedback_rules_dokujo.md) | 同じ確かめを、独身女性のコラム / 映画、独身女性のコラム / 女性向けで行ったもの | `20_feedback_rules_livedoor.py --pairs ... --name 04_feedback_rules_dokujo` |
+| [05_distill_shots5_rules.md](04_livedoor/05_distill_shots5_rules.md) | 採用した境目のルールを足して、独身女性のコラムか女性向けと判定された記事だけ付け直したラベルで、蒸留を評価したもの | `19_distill_eval_livedoor.py --shots 5 --rules` |

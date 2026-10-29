@@ -1,0 +1,50 @@
+{
+  "shots": 5,
+  "min_gain": 0.02,
+  "pairs": [
+    {
+      "a": "dokujo-tsushin",
+      "b": "movie-enter",
+      "disputes": 53,
+      "rule": "記事の主目的が、独身・働く女性の恋愛・結婚・仕事・生活についてのコラム・意見・体験談として読者に語りかけることなら dokujo-tsushin。映画作品そのものの紹介・レビュー・興行・出演者や監督のインタビュー・公開イベントなど、作品情報の報道が主目的なら movie-enter。映画を題材にしていても、そこから女性の恋愛観や生き方を論じる場合は dokujo-tsushin とし、恋愛映画でも作品評や作品情報が中心なら movie-enter とする。",
+      "consistent": true,
+      "reason": "異議はいずれも映画を切り口に女性の恋愛・結婚・生き方を論じるコラムであり、近い記事でも作品情報・インタビュー・イベント報道は movie-enter、生活や恋愛についてのコラムは dokujo-tsushin と一致しているため。",
+      "articulation_seconds": 17.5,
+      "articulation_tokens": {
+        "prompt": 8536,
+        "completion": 2561
+      },
+      "check": {
+        "n": 200,
+        "disputes_in_check": 12,
+        "accuracy_before": 0.94,
+        "accuracy_after": 0.94,
+        "fixed": 0,
+        "broken": 0
+      },
+      "adopted": false
+    },
+    {
+      "a": "dokujo-tsushin",
+      "b": "peachy",
+      "disputes": 167,
+      "rule": "dokujo-tsushin は、働く独身女性の実体験・本音・悩みを通して恋愛・結婚・仕事・生活を描くコラム／体験談／社会観察であり、美容・ファッション等が題材でも個々の女性の心理や暮らし方の語りが主軸の記事。peachy は、美容・ファッション・恋愛・グルメ・エンタメ・ライフスタイルについて、読者向けの情報・ハウツー・トレンド・サービス／商品紹介・ランキング・有名人や専門家のインタビューを提供する記事。",
+      "consistent": true,
+      "reason": "異議の記事はいずれも、題材そのものより女性の経験談や心理・生活上の悩みを主軸にした読み物であるため dokujo-tsushin と判断でき、近い peachy 記事は実用情報・ランキング・サービス紹介・インタビュー等が中心で一貫して区別できる。",
+      "articulation_seconds": 19.7,
+      "articulation_tokens": {
+        "prompt": 8158,
+        "completion": 2713
+      },
+      "check": {
+        "n": 200,
+        "disputes_in_check": 30,
+        "accuracy_before": 0.85,
+        "accuracy_after": 0.91,
+        "fixed": 12,
+        "broken": 0
+      },
+      "adopted": true
+    }
+  ]
+}

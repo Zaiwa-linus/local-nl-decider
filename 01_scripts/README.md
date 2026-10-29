@@ -14,7 +14,7 @@
 | [04_tune.py](04_tune.py) | 判定機のパラメーターを validation で選び、間違えやすい組み合わせも出す | このリポジトリの環境 |
 | [05_train_final.py](05_train_final.py) | 判定に使うロジスティック回帰を学習し、確信度の補正（温度）としきい値を validation で決めて `02_data/models/` に保存する | このリポジトリの環境 |
 | [07_llm_label.py](07_llm_label.py) | train の一部に DeepSeek でラベルを付ける（蒸留用。`.env` の `DEEPSEEK_API_KEY` を使う） | このリポジトリの環境（`uv run --env-file .env`） |
-| [08_distill_eval.py](08_distill_eval.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる。`--shots N` で few-shot のラベルを使う | このリポジトリの環境 |
+| [08_distill_eval.py](08_distill_eval.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる。`--shots N` で few-shot のラベル、`--rules` で境目のルールを足したラベルを使う | このリポジトリの環境 |
 | [06_predict.py](06_predict.py) | 新しいテキストを判定して、カテゴリーと確信度を返す。しきい値を下回ったものは「要確認」と出す | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
 
 ## Phase 2（パブコメの意見、正解のない実データ）
@@ -40,14 +40,16 @@
 | --- | --- | --- |
 | [16_fetch_livedoor.py](16_fetch_livedoor.py) | livedoor ニュースコーパスを取得し、連載名を取り除いて学習・検証・評価用に分ける | このリポジトリの環境 |
 | [17_embed_livedoor.py](17_embed_livedoor.py) | 記事を EmbeddingGemma 2 で埋め込む | 埋め込み用の環境（`~/development/tools/embeddinggemma2-image`） |
-| [18_label_livedoor.py](18_label_livedoor.py) | 学習用と評価用の記事に DeepSeek でラベルを付ける。`--shots N` で、検証用からカテゴリーごとに N 件の例を見せる（few-shot） | このリポジトリの環境（`uv run --env-file .env`） |
+| [18_label_livedoor.py](18_label_livedoor.py) | 学習用と評価用の記事に DeepSeek でラベルを付ける。`--shots N` で、検証用からカテゴリーごとに N 件の例を見せる（few-shot）。`--rules NAME` で採用した境目のルールを足し、`--only A,B` で判定が A か B の記事だけ付け直す | このリポジトリの環境（`uv run --env-file .env`） |
 | [19_distill_eval_livedoor.py](19_distill_eval_livedoor.py) | DeepSeek のラベルで学習した判定機と、正解のラベルで学習した判定機を比べる | このリポジトリの環境 |
+| [20_feedback_rules_livedoor.py](20_feedback_rules_livedoor.py) | 人の異議を、埋め込みが近い記事と並べて DeepSeek に言語化させ、境目のルールにする。言語化に使っていない記事で効くか確かめて、採用を決める | このリポジトリの環境（`uv run --env-file .env`） |
 
 ## 共通
 
 | スクリプト | 内容 |
 | --- | --- |
 | [label_names.py](label_names.py) | ラベルの ID を、結果の Markdown に書く日本語の名前に変える対応表 |
+| [livedoor_llm.py](livedoor_llm.py) | livedoor のラベル付けで使う、DeepSeek へのプロンプト（説明・例・境目のルール）と問い合わせ。18 と 20 から使う |
 
 ## サンプル
 

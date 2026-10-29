@@ -1,0 +1,72 @@
+{
+  "shots": 5,
+  "min_gain": 0.02,
+  "pairs": [
+    {
+      "a": "kaden-channel",
+      "b": "it-life-hack",
+      "disputes": 172,
+      "rule": "一貫した内容ルールは定義できない。強いて言えば、家電・AV機器・ガジェットなど消費者向けハードウェアの製品・話題をkaden-channel、PC・ソフト・ネットサービス・ITの使い方や法規制をit-life-hackとする境界だが、人の判定はこれに反する例が多い。",
+      "consistent": false,
+      "reason": "ネットサービスの利用統計をkaden-channelとする一方、同種のSNS活用記事はit-life-hackとされ、違法ダウンロードや著作権の話題も一方はkaden-channel、他方はit-life-hackと判定されている。ガジェットや技術デモ、テレビ録画市場でも同様に境界が逆転しており、内容だけから一貫して説明できない。",
+      "articulation_seconds": 29.8,
+      "articulation_tokens": {
+        "prompt": 7742,
+        "completion": 4557
+      },
+      "check": {
+        "n": 200,
+        "disputes_in_check": 51,
+        "accuracy_before": 0.745,
+        "accuracy_after": 0.74,
+        "fixed": 4,
+        "broken": 5
+      },
+      "adopted": false
+    },
+    {
+      "a": "kaden-channel",
+      "b": "smax",
+      "disputes": 115,
+      "rule": "記事の主役がスマートフォン・携帯電話・タブレット、そのアプリ／通信サービス／モバイルOSやブランド自体にあり、製品発表・レビュー・機能紹介・利用レポート・ファン話題として書かれている場合はsmax。主役が家電や非モバイルのデジタルガジェットにある場合、またはモバイル機器を生活術・教育・健康美容・ビジネス・マーケティング・業界分析・消費者向け注意の文脈で扱う場合はkaden。",
+      "consistent": true,
+      "reason": "異議と近い記事を比べると、同じモバイル関連の題材でも製品・サービス自体を主題にした記事はsmax、生活や業界などの周辺文脈を主題にした記事はkadenとなっており、切り口の違いで一貫して説明できるため。",
+      "articulation_seconds": 84.8,
+      "articulation_tokens": {
+        "prompt": 7738,
+        "completion": 14374
+      },
+      "check": {
+        "n": 200,
+        "disputes_in_check": 21,
+        "accuracy_before": 0.895,
+        "accuracy_after": 0.89,
+        "fixed": 0,
+        "broken": 1
+      },
+      "adopted": false
+    },
+    {
+      "a": "it-life-hack",
+      "b": "smax",
+      "disputes": 132,
+      "rule": "特定の題材・切り口で一貫して説明できるルールは定められない。",
+      "consistent": false,
+      "reason": "スマートフォン／タブレット向けアプリの紹介記事やモバイル製品の業界記事が、同種の内容でも一方はit-life-hack、他方はsmaxと判定されており、異議どうしおよび近い記事との間で矛盾する。",
+      "articulation_seconds": 26.4,
+      "articulation_tokens": {
+        "prompt": 7163,
+        "completion": 4082
+      },
+      "check": {
+        "n": 200,
+        "disputes_in_check": 18,
+        "accuracy_before": 0.91,
+        "accuracy_after": 0.905,
+        "fixed": 0,
+        "broken": 1
+      },
+      "adopted": false
+    }
+  ]
+}
